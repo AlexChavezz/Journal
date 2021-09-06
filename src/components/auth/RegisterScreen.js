@@ -9,10 +9,10 @@ import { startLodingPage } from '../../actions/loading';
 export const RegisterScreen = () => {
 
     const [ state, handleInputChange ] = useForm({
-        name: 'Alexis',
-        email: 'alexischavez@email.com',
-        password: '12345678910',
-        passwordConfirm: '12345678910',
+        name: '',
+        email: '',
+        password: '',
+        passwordConfirm: '',
     });
     const { name, email, password, passwordConfirm } = state;
 

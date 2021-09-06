@@ -12,7 +12,6 @@ export const loadNotesAsync = () => {
     }
 }
 export const addNoteAsync = ( note = '' ) => {
-    console.log(note)
     return ( dispatch, getstate ) => {
         const { uid } = getstate().auth;
         addDoc(collection(db, `${ uid }/journal/notes`), note).then( doc => {
