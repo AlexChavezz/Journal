@@ -25,7 +25,6 @@ export const RegisterScreen = () => {
             dispatch(startLodingPage());
         }
     }
-    console.log(error)
     const isFormValid = () => {
         if (name.trim().length < 3) {
             dispatch(setError('Name is Required'));
