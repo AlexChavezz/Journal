@@ -46,6 +46,7 @@ export const RegisterScreen = () => {
                 <h3>Register</h3>
                 <form
                     onSubmit={onSubmit}
+                    autoComplete="off"
                 >
                     <input
                         type="text"
