@@ -30,7 +30,7 @@ export const ActiveNote = (props) => {
                     </button>
                 </div>
                 <div className="show-note">
-                    <p>{props.note}</p>
+                    <p className="parrafo">{props.note}</p>
                 </div>
                 <div className="delete-note-button">
                     <button 

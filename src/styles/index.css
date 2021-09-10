@@ -20,6 +20,10 @@
     fill:black;
 
 }
+.parrafo 
+{
+    white-space: pre;
+}
 
 /* LOGIN AND REGISTER SCREENS */
 .auth
@@ -333,7 +337,8 @@
 {
     width:70px;
     height:calc(100vh - 50px);
-    background-color:#202020;   
+    background-color:#202020;
+ 
     
 }
 .journal aside a
@@ -590,7 +595,7 @@ height:100vh;
 
 .modal-notes 
 {
-    position:absolute;
+    position:fixed;
     width:100%;
     height: 100%;
     left: 0px;
@@ -656,7 +661,7 @@ height:100vh;
 }
 .modal-show-notes
 {
-    position:absolute;
+    position:fixed;
     width:100%;
     height: 100%;
     left: 0px;
@@ -707,6 +712,9 @@ height:100vh;
 .modal-show-notes .notes-content .show-note
 {
     height: 90%;
+    word-break: break-all;
+    width: 100%;
+    overflow: auto;
 }
 .modal-show-notes .notes-content .show-note .delete-note-button
 {
@@ -721,7 +729,7 @@ height:100vh;
     cursor:pointer;
     display: block;
     width:200px;
-    height:20px;
+    height:30px;
 }
 .modal-show-notes .notes-content .delete-note-button button:hover
 {
@@ -762,6 +770,14 @@ height:100vh;
     aside{
         display:none;
         z-index:1;
+        position:fixed;
+        top:50px;  
+    }
+    .journal-header
+    {
+        position: fixed;
+        z-index:1;
+        width:100%;
     }
     .journal-header .date
     {
@@ -772,9 +788,9 @@ height:100vh;
         display:block;
         margin: 10px;;
     }
-    .journal aside
+    .modal-show-notes .notes-content
     {
-        position: absolute;
+        width: 60%;
     }
 }
 @media( max-width: 1074px)
@@ -789,6 +805,13 @@ height:100vh;
     .containerTable
     {
         width:100vw;
+    }
+}
+@media( max-width: 680px)
+{
+    .modal-show-notes .notes-content
+    {
+        width: 90%;
     }
 }
 @media( max-width: 527px)
@@ -835,3 +858,4 @@ height:100vh;
     }   
    
 }
+
