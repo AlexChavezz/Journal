@@ -85,14 +85,6 @@ export const InitialScreenRouter = () => {
                     </NavLink>
                 </aside>
 
-                {/* <nav>
-        <Link to="/">Home</Link>
-        <Link to="/journal/toDo">To do</Link>
-        <Link to="/journal/notes">Notes</Link>
-    </nav> */}
-
-
-
                 <Switch>
                     <Route exact path="/journal" component={HomeScreen} />
                     <Route exact path="/journal/toDo" component={TodoScreen} />

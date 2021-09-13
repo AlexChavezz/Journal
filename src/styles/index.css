@@ -296,7 +296,6 @@
 {
     cursor:pointer;
     padding:5px;
-    border:1px solid lightblue;
     border-radius:2px;
     font-family:'Roboto';
     font-size:12px;
@@ -338,9 +337,9 @@
     width:70px;
     height:calc(100vh - 50px);
     background-color:#202020;
- 
     
-}
+ }
+
 .journal aside a
 {
     align-items:center;
@@ -688,6 +687,7 @@ height:100vh;
     border-radius:10px;
     overflow: auto;
     padding:10px;
+    font-weight: bold;
 }
 .modal-show-notes .notes-content .close
 {
@@ -771,7 +771,8 @@ height:100vh;
         display:none;
         z-index:1;
         position:fixed;
-        top:50px;  
+        top:50px;
+        animation: aside 100ms linear;
     }
     .journal-header
     {
@@ -859,3 +860,11 @@ height:100vh;
    
 }
 
+@keyframes aside {
+    from {
+        transform: translateX(-100%); 
+    }
+    to{
+        transform: translateX(0%); 
+    }
+ }
