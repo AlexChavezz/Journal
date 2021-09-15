@@ -1,4 +1,4 @@
-import { collection, addDoc, deleteDoc, doc, updateDoc } from "firebase/firestore"
+import { collection, addDoc,doc, deleteDoc, updateDoc, getDoc } from "firebase/firestore"
 import { db } from "../firebase/firebase_config"
 import { loadListToDo } from "../helpers/loadListToDo";
 import { types } from "../types/types";
@@ -28,7 +28,30 @@ export const startNewNote = (note) => {
     }
 }
 
-export const removeNoteAsync = (id) => {
+export const removeTodoAsync = ( id ) => {
+    return async (dispatch, setstate) => {
+        const { uid } = setstate().auth;
+
+        const docRef = doc(db, `/${uid}/journal/toDoList/${id}`);
+        const docs = await getDoc(docRef);
+
+        const todo = {
+         ...docs.data(),
+         isEliminated: true,   
+        }
+        updateDoc(doc(db, `/${uid}/journal/toDoList/${id}`), todo)
+        .then( () => {
+            Toast.fire({
+                icon: 'success',
+                title: 'Eliminated',
+                text:'To do add to paper bin',
+            });
+        });
+        dispatch(removeTodo(id));
+    }
+}
+
+export const deleteTodoAsync = (id) => {
     return (dispatch, setstate) => {
         const { uid } = setstate().auth;
         deleteDoc(doc(db, `/${uid}/journal/toDoList/${id}`))
@@ -40,7 +63,34 @@ export const removeNoteAsync = (id) => {
             }).catch(() => {
                 Swal.fire('Error', 'Error try again', 'error')
             });
-        dispatch(removeNote(id));
+        dispatch(deleteTodo(id));
+    }
+}
+export const resetTodoAsync = (id) => {
+    return async (dispatch, setstate) => {
+        const { uid } = setstate().auth;
+
+        const docRef = doc(db, `/${uid}/journal/toDoList/${id}`);
+        const docs = await getDoc(docRef);
+
+        const todo = {
+         ...docs.data(),
+         isEliminated: false,   
+        }
+        updateDoc(doc(db, `/${uid}/journal/toDoList/${id}`), todo)
+        .then( () => {
+            Toast.fire({
+                icon: 'success',
+                title: 'Todo has reseted',
+            });
+            
+        }).catch(() => {
+            Toast.fire({
+                icon: 'error',
+                title: 'Error try again',
+            });
+        });
+        dispatch(resetTodo(id));
     }
 }
 
@@ -73,13 +123,17 @@ export const notesLoad = (notes) => ({
     payload: notes
 });
 
-export const removeNote = (id) => ({
-    type: types.removeNote,
+export const removeTodo = (id) => ({
+    type: types.removeTodo,
+    payload: id,
+});
+export const deleteTodo = (id) => ({
+    type: types.deleteTodo,
     payload: id,
 });
 
 export const updateNote = (id, note) => ({
-    type: types.updateNote,
+    type: types.updateTodo,
     payload: {
         id,
         ...note
@@ -92,4 +146,8 @@ export const activeNote = (id) => ({
 });
 export const removeActiveNote = () => ({
     type: types.removeNoteActive,
+});
+export const resetTodo = (id) => ({
+    type: types.resetTodo,
+    payload:id,
 });

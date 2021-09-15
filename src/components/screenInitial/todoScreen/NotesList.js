@@ -1,7 +1,7 @@
 import React from 'react';
 import { useDispatch } from 'react-redux';
 import { showModalEdit } from '../../../actions/modal';
-import { activeNote, removeNoteAsync } from '../../../actions/todo';
+import { activeNote, removeTodoAsync } from '../../../actions/todo';
 
 export const NotesList = ({ title, description, done, id, setShowForm }) => {
 
@@ -10,7 +10,8 @@ export const NotesList = ({ title, description, done, id, setShowForm }) => {
 
 
     const handleDelete = () => {
-        dispatch(removeNoteAsync(id));
+        // dispatch(removeNoteAsync(id));
+        dispatch(removeTodoAsync(id));
     }
     const handleUpdate = () => {
         setShowForm(true);

@@ -9,6 +9,7 @@ export const Modal = ({ handleChangeState }) => {
     const [ values , handleInputChange ] = useForm({
         date: null,
         note:'',
+        isEliminated: null,    
     });
     const { note } = values;
 
@@ -18,6 +19,7 @@ export const Modal = ({ handleChangeState }) => {
         const newNote = {
             date: new Date().getTime(),
             note: note,
+            isEliminated: false,
         }
         
         if( isFormValidate() ){

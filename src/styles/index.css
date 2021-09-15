@@ -24,7 +24,6 @@
 {
     white-space: pre;
 }
-
 /* LOGIN AND REGISTER SCREENS */
 .auth
 {
@@ -254,9 +253,10 @@
 {
     width:1200px;
     margin:0px auto;
-    margin-top: 20px;
-    /* box-shadow: rgba(255, 255, 255, 0.1) 0px 1px 1px 0px inset, rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px; */
-    box-shadow: rgba(17, 17, 26, 0.05) 0px 1px 0px, rgba(17, 17, 26, 0.1) 0px 0px 8px;}
+    box-shadow: rgba(17, 17, 26, 0.05) 0px 1px 0px, rgba(17, 17, 26, 0.1) 0px 0px 8px;
+    height:calc(100vh - 50px);
+    overflow: auto;
+}
 .journal
 {
     height:100vh;
@@ -350,6 +350,67 @@
     width:100%;
 }
 
+/* HOME */
+.container_home
+{
+    width:90%;
+    margin: 0px auto;
+    height:calc(100vh - 50px);
+    box-shadow: rgba(17, 17, 26, 0.05) 0px 1px 0px, rgba(17, 17, 26, 0.1) 0px 0px 8px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+.text
+{
+    box-shadow: none;
+    display: block;
+}
+.text h3
+{
+    font-size:35px;
+    font-family:"Roboto";
+    font-weight: bold;
+    margin-top:40px;
+}
+.text p
+{
+    margin:20px 0px 40px 0px;
+}
+.text h3 b
+{
+    color:green;
+}
+
+.container_home .footer 
+{
+    display: flex;
+    align-items: center;
+    /* align-self: flex-end; */
+    background-color:#181818;
+    color:white;
+    flex-direction: column;
+    font-family: "Roboto";
+    font-weight:bold;
+    font-size:14px;
+    justify-content: center;
+    letter-spacing:1px;
+    height:100px;
+    text-align: center;
+    width: 100%;
+}
+.container_home .footer a
+{
+    color:gold;
+}
+.container_home .footer a:hover{
+    color:#0DCAff;
+}
+
+
+
+
+
 /* TABLE TODO LIST */
 
 .journal_container .btn-add
@@ -412,7 +473,7 @@ thead th:nth-child(1) {
 
 
 /* NOTES SCREEN */
-.notes .target
+ .target
 {
     align-items:center;
     border:1px dotted #ccc;
@@ -766,6 +827,149 @@ height:100vh;
     font-size:20px;
 }
 
+/* RECYCLY BIN */
+
+.todos_notes_folders
+{
+    padding-top:200px;
+    width:80%;
+    margin:0px auto;
+    display: flex;
+    justify-content: space-around;
+}
+.todos_notes_folders .folder
+{
+    display: flex;
+    flex-direction: column;
+    text-align:center;  
+    font-family:"Roboto";
+    font-weight: bold;
+    position: relative;
+}
+.todos_notes_folders .folder .badge
+{
+    width:20px;
+    height:20px;
+    background-color:#DC3545;
+    position: absolute;
+    top:-5px;
+    right:-5px;
+    border-radius:50%;
+    color:white;
+    font-weight:bold;
+    font-size: 12px;
+    text-align: center;
+    line-height:20px;
+}
+.todos_notes_folders .folder svg
+{
+    cursor: pointer;
+}
+.todos_notes_folders .folder svg:hover
+{
+    fill:gold;
+}
+
+.journal_container .return_arrow
+{
+    padding:50px 0px 0px 50px;
+}
+.journal_container .return_arrow svg:hover
+{
+    cursor: pointer;
+    fill: White;   
+    background-color:#181818;
+    border:1px solid black;
+}
+.container_todos
+{
+    margin: 0px auto;
+    width:90%;
+    padding-top:40px;   
+}
+.todos_eliminateds
+{
+    width: 100%;
+    display:flex;
+    margin:0px auto;
+    margin: 10px 0px 10px 0px;
+    align-items: center;
+    padding:5px;
+    border:1px solid #ccc;
+}
+.todos_eliminateds span 
+{
+    width: 30%;
+}
+.todos_eliminateds p
+{
+    width:40%;
+}
+.todos_eliminateds > div
+{
+    width:30%;
+}
+
+ .buttons .delete_perman
+{   
+    background-color:white;
+    border: 1px solid #dc3545;
+    color:#dc3545;
+    padding: 5px 10px;  
+    margin:0px 10px;
+}
+.buttons .delete_perman:hover
+{
+    background-color:#dc3545;
+    border: 1px solid white;
+    color:white;
+    cursor: pointer;
+}
+
+.buttons .reset
+{
+    background-color:white;
+    border: 1px solid #343a40;
+    color:#343a40;
+    padding: 5px 10px;  
+    margin:0px 10px;
+}
+.buttons .reset:hover
+{
+    background-color:#343a40;
+    border: 1px solid white;
+    color:white;
+    cursor: pointer;
+}
+.notes_container
+{
+    display: flex;
+    width:90%;
+    margin:0px auto;
+    flex-wrap: wrap;
+}
+.notes_container .target
+{
+    height:400px;
+    width:300px;
+}
+.notes_container .target_notes
+{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    overflow: auto;
+    cursor:auto;
+}
+.notes_container .target_notes p 
+{
+    margin-top:20px;
+}
+.buttons
+{
+    height:30px;
+    margin:10px 0px;
+}
 @media (max-width: 1270px){
     aside{
         display:none;
@@ -774,12 +978,31 @@ height:100vh;
         top:50px;
         animation: aside 100ms linear;
     }
+    .journal_container
+    {
+        margin-top:50px;
+    }
     .journal-header
     {
         position: fixed;
         z-index:1;
         width:100%;
     }
+    .container_home
+    {
+        margin-top:50px;
+        width:100%;
+    }
+    .container_home .footer
+    {
+        height:75px;
+        font-size:13px;
+    }
+    .container_home .footer p, span
+    {   
+        margin:5px 0px 5px 0px
+    }
+
     .journal-header .date
     {
         display:none;
@@ -792,6 +1015,10 @@ height:100vh;
     .modal-show-notes .notes-content
     {
         width: 60%;
+    }
+    .journal_container .todos_notes_folders
+    {
+        height: calc(100vh - 50px);
     }
 }
 @media( max-width: 1074px)
@@ -806,6 +1033,25 @@ height:100vh;
     .containerTable
     {
         width:100vw;
+    }
+}
+@media( max-width: 893px)
+{
+    .container_todos
+    {
+        width: 90vw;
+        overflow: auto;
+    }
+    .container_todos .todos_eliminateds
+    {
+        width:900px;
+    }
+
+}
+@media( max-width: 760px)
+{
+    .notes_container{
+        justify-content:center;
     }
 }
 @media( max-width: 680px)
@@ -849,6 +1095,19 @@ height:100vh;
         margin: 0px auto;
         margin-top:10px;
         margin-bottom: 10px;
+    }
+    .todos_notes_folders    
+    {
+        padding-top:0px;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+    .todos_notes_folders .folder
+    {
+        align-items: center;
+        margin:20px 0px 20px 0px;
+        width:120px;
     }
 }
 @media( max-width: 450px)

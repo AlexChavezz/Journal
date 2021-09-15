@@ -44,7 +44,7 @@ export const TodoScreen = () => {
                     </thead>
                     <tbody>
                         {
-                            state.map(note => <NotesList key={note.id} {...note} setShowForm={setShowForm}/>)
+                            state.map(note => note.isEliminated === false && <NotesList key={note.id} {...note} setShowForm={setShowForm}/> )
                         }
                     </tbody>
                 </table>

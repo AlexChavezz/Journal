@@ -17,8 +17,10 @@ export const types = {
 
     addNewNote: '[todo] add note',
     notesLoad: '[todo] load notes',
-    removeNote: '[todo] remove note',
-    updateNote: '[todo] update note',
+    removeTodo: '[todo] remove todo',
+    deleteTodo: '[todo delete note]',
+    updateTodo: '[todo] update note',
+    resetTodo: '[todo] reset todo',
     
     modeEdit: '[modal] mode edit active',
     modeAdd: '[modal] mode add active',
@@ -28,5 +30,7 @@ export const types = {
     
     loadNote: '[notes] load notes',
     addNote: '[notes] Add New Note',
-    deleteNote:'[notes] remove note'
+    removeNote: '[notes] remove note',
+    deleteNote:'[notes] delete note',
+    resetNote: '[notes] reset note',
 }

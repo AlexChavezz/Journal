@@ -25,6 +25,7 @@ export const Form = ( { setShowForm } ) => {
             title,
             description,
             done: false,
+            isEliminated: false,
         }
         if( isValidate() ){
             if (mode === 'add') {

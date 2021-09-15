@@ -1,9 +1,9 @@
 import { types } from "../types/types";
 
-const initialState = [{
+const initialState = [ {
     date: null,
-    notes:'',
-}];
+    notes: '',
+} ];
 
 export const notesReducer = (state = initialState, action) => {
     switch (action?.type) {
@@ -12,14 +12,22 @@ export const notesReducer = (state = initialState, action) => {
                 state: [ ...action.payload ],
             }
         case types.addNote:
-        return {
-            state: [ action.payload, ...state.state ]
-        }
+            return {
+                state: [ action.payload, ...state.state ]
+            }
+
+        case types.removeNote:
+            return {
+                state: state.state.map(note => note.id === action.payload ? { ...note, isEliminated: true } : note)
+            }
         case types.deleteNote:
-        return {
-            state: state.state.filter( note => note.id !== action.payload )
-        }
-            
+            return {
+                state: state.state.filter(note => note.id !== action.payload)
+            }
+        case types.resetNote:
+            return {
+                state: state.state.map( note => note.id === action.payload? { ...note, isEliminated: false }: note)
+            }
         default:
             return state;
     }

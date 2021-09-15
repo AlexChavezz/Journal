@@ -16,13 +16,22 @@ export const todoReducer = (state = initialState, action) => {
             return {
             state: [ action.payload, ...state.state ],
             }
-        case types.removeNote: 
+        case types.removeTodo: 
         return {   
-            state: state.state.filter( note => note.id !== action.payload ),
+            // state: state.state.filter( note => note.id !== action.payload),
+                state: state.state.map( note => note.id === action.payload? { ...note, isEliminated: true } : note )
             }
-        case types.updateNote:
+        case types.deleteTodo: 
+            return {
+                state: state.state.filter( note => note.id !== action.payload )
+            }
+        case types.updateTodo:
             return  {
-                state: state.state.map( note => note.id === action.payload.id ?  action.payload  :  note   ),
+                state: state.state.map( note => note.id === action.payload.id ?  action.payload  :  note ),
+            }
+        case types.resetTodo:
+            return {
+                state: state.state.map( note => note.id === action.payload? { ...note, isEliminated: false } : note )
             }
         // case types.noteDone: 
         //     return {

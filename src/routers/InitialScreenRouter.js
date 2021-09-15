@@ -4,6 +4,9 @@ import { NavLink, Redirect, Route, Switch } from 'react-router-dom';
 import { startLogout } from '../actions/auth';
 import { HomeScreen } from '../components/screenInitial/homeScreen/HomeScreen';
 import { NotesScreen } from '../components/screenInitial/notesScreen/NotesScreen';
+import { RecycleScreenNotes } from '../components/screenInitial/recycleScreen/notesRecycle/RecycleScreenNotes';
+import { RecycleScreen } from '../components/screenInitial/recycleScreen/RecycleScreen';
+import { RecycleScreenTodos } from '../components/screenInitial/recycleScreen/todosRecycle/RecycleScreenTodos';
 import { TodoScreen } from '../components/screenInitial/todoScreen/TodoScreen';
 
 export const InitialScreenRouter = () => {
@@ -19,7 +22,7 @@ export const InitialScreenRouter = () => {
         const status = ref.current.style.display;
         if (status !== 'block') {
             ref.current.style.display = 'block';
-        }else if( status === 'block') {
+        } else if (status === 'block') {
             ref.current.style.display = 'none';
         }
     }
@@ -83,12 +86,20 @@ export const InitialScreenRouter = () => {
                             <path d="M1 2.828c.885-.37 2.154-.769 3.388-.893 1.33-.134 2.458.063 3.112.752v9.746c-.935-.53-2.12-.603-3.213-.493-1.18.12-2.37.461-3.287.811V2.828zm7.5-.141c.654-.689 1.782-.886 3.112-.752 1.234.124 2.503.523 3.388.893v9.923c-.918-.35-2.107-.692-3.287-.81-1.094-.111-2.278-.039-3.213.492V2.687zM8 1.783C7.015.936 5.587.81 4.287.94c-1.514.153-3.042.672-3.994 1.105A.5.5 0 0 0 0 2.5v11a.5.5 0 0 0 .707.455c.882-.4 2.303-.881 3.68-1.02 1.409-.142 2.59.087 3.223.877a.5.5 0 0 0 .78 0c.633-.79 1.814-1.019 3.222-.877 1.378.139 2.8.62 3.681 1.02A.5.5 0 0 0 16 13.5v-11a.5.5 0 0 0-.293-.455c-.952-.433-2.48-.952-3.994-1.105C10.413.809 8.985.936 8 1.783z" />
                         </svg>
                     </NavLink>
+                    <NavLink activeClassName="active" to="/journal/paperbin" className="flex">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="white" className="bi bi-recycle" viewBox="0 0 16 16">
+                            <path d="M9.302 1.256a1.5 1.5 0 0 0-2.604 0l-1.704 2.98a.5.5 0 0 0 .869.497l1.703-2.981a.5.5 0 0 1 .868 0l2.54 4.444-1.256-.337a.5.5 0 1 0-.26.966l2.415.647a.5.5 0 0 0 .613-.353l.647-2.415a.5.5 0 1 0-.966-.259l-.333 1.242-2.532-4.431zM2.973 7.773l-1.255.337a.5.5 0 1 1-.26-.966l2.416-.647a.5.5 0 0 1 .612.353l.647 2.415a.5.5 0 0 1-.966.259l-.333-1.242-2.545 4.454a.5.5 0 0 0 .434.748H5a.5.5 0 0 1 0 1H1.723A1.5 1.5 0 0 1 .421 12.24l2.552-4.467zm10.89 1.463a.5.5 0 1 0-.868.496l1.716 3.004a.5.5 0 0 1-.434.748h-5.57l.647-.646a.5.5 0 1 0-.708-.707l-1.5 1.5a.498.498 0 0 0 0 .707l1.5 1.5a.5.5 0 1 0 .708-.707l-.647-.647h5.57a1.5 1.5 0 0 0 1.302-2.244l-1.716-3.004z" />
+                        </svg>
+                    </NavLink>
                 </aside>
 
                 <Switch>
                     <Route exact path="/journal" component={HomeScreen} />
                     <Route exact path="/journal/toDo" component={TodoScreen} />
                     <Route exact path="/journal/notes" component={NotesScreen} />
+                    <Route exact path="/journal/paperbin" component={RecycleScreen} />
+                    <Route exact path="/journal/paperbin/todos" component={RecycleScreenTodos} />
+                    <Route exact path="/journal/paperbin/notes" component={RecycleScreenNotes} />
                     <Redirect exact to="/journal" />
                 </Switch>
             </div>
