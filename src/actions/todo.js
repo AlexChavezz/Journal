@@ -94,10 +94,10 @@ export const resetTodoAsync = (id) => {
     }
 }
 
-export const updateNotesAsync = (id, note) => {
+export const updateNotesAsync = (todo, newTodo) => {
     return (dispatch, setstate) => {
         const { uid } = setstate().auth;
-        updateDoc(doc(db, `/${uid}/journal/toDoList/${id}`), note)
+        updateDoc(doc(db, `/${uid}/journal/toDoList/${todo.id}`), newTodo)
             .then(() => {
                 Toast.fire({
                     icon: 'success',
@@ -106,7 +106,7 @@ export const updateNotesAsync = (id, note) => {
             }).catch(() => {
                 Swal.fire('Error', 'Error try again', 'error')
             });
-        dispatch(updateNote(id, note));
+        dispatch(updateNote(todo.id, newTodo));
     }
 }
 
@@ -132,7 +132,7 @@ export const deleteTodo = (id) => ({
     payload: id,
 });
 
-export const updateNote = (id, note) => ({
+export const updateNote = ( id , note) => ({
     type: types.updateTodo,
     payload: {
         id,
@@ -140,9 +140,11 @@ export const updateNote = (id, note) => ({
     }
 });
 
-export const activeNote = (id) => ({
+export const activeNote = (note) => ({
     type: types.noteActive,
-    payload: id
+    payload: {
+        ...note
+    }
 });
 export const removeActiveNote = () => ({
     type: types.removeNoteActive,

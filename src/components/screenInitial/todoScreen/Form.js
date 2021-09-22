@@ -1,22 +1,39 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
 import { showModalAdd } from '../../../actions/modal';
 import { removeActiveNote, startNewNote, updateNotesAsync } from '../../../actions/todo';
 import { Toast } from '../../../alerts/alert';
 import { useForm } from '../../../hooks/useForm';
 
+
+const initialState = {
+    title: '',
+    description: '',
+    done: null,
+}
+
 export const Form = ( { setShowForm } ) => {
     
-    const [ { title, description }, handleInputChange ] = useForm({
-        title: '',
-        description: '',
-        done: null,
-    });
+ 
+
+    const [ formValues, handleInputChange, setValues ] = useForm(initialState);
+    const { title, description} = formValues;
 
     const dispatch = useDispatch();
     const { mode } = useSelector(state => state.modal);
+    const { titleActive, descriptionActive, id } = useSelector(state => state.active);
+    
 
-    const { id } = useSelector(state => state.active);
+    useEffect(() => {
+        if( titleActive && descriptionActive ) {
+            setValues({
+                title: titleActive,
+                description: descriptionActive,
+            });
+        }else{
+            setValues(initialState);
+        }
+    }, [setValues, titleActive, descriptionActive]);
 
 
     const handleSubmit = (e) => {
@@ -31,7 +48,12 @@ export const Form = ( { setShowForm } ) => {
             if (mode === 'add') {
                 dispatch(startNewNote(note));
             } else if (mode === 'edit') {
-                dispatch(updateNotesAsync(id, note));
+    
+                dispatch(updateNotesAsync({
+                    titleActive, 
+                    descriptionActive,
+                    id
+                }, note));
                 dispatch(showModalAdd());
             }
         }else{

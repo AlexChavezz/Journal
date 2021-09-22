@@ -1,18 +1,22 @@
 import { types } from "../types/types";
 
 const initialState = {
-    id:'',
+    titleActive: null, 
+    descriptionActive: null,
+    id:null,
 }
 export const activeReducer = ( state = initialState, action ) => {
     switch (action.type) {
         case types.noteActive:
             
             return {
-                id: action.payload,
+                ...action.payload
             }
         case types.removeNoteActive:
             return {
-                id:'',
+                titleActive: null, 
+                descriptionActive: null,
+                id:null,       
             }
         default:
             return state;

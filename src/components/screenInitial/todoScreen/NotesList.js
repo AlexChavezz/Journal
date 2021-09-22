@@ -15,7 +15,11 @@ export const NotesList = ({ title, description, done, id, setShowForm }) => {
     }
     const handleUpdate = () => {
         setShowForm(true);
-        dispatch(activeNote(id));
+        dispatch(activeNote({
+            titleActive:title, 
+            descriptionActive: description, 
+            id,
+        }));
         dispatch(showModalEdit());
     }
 
