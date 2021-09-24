@@ -562,9 +562,9 @@ height:100vh;
   .dropdown-content {
     display: none;
     position: absolute;
-    top:28px;
-    right:20px;
-    background-color: #5a565655;
+    top:35px;
+    right:0px;
+    background-color: #ccc;
     min-width: 160px;
     box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
     padding: 12px 16px;
@@ -574,13 +574,13 @@ height:100vh;
 .dropdown:hover .dropdown-content {
     display: block;
 }
-.dropdown:hover .dropdown-content .option p
+.dropdown .dropdown-content .option p
 {
-    color:black;
+    color:#181818;
     cursor:pointer;
 }
 
-.dropdown:hover .dropdown-content .option p > .logout
+.dropdown .dropdown-content .option p > .logout
 {
     color:red;
 }
@@ -777,12 +777,18 @@ height:100vh;
     width: 100%;
     overflow: auto;
 }
-.modal-show-notes .notes-content .show-note .delete-note-button
+.modal-show-notes .notes-content .show-note .buttons
 {
+    display: flex;
     height:5%;
     width: 100%;
+
 }
-.modal-show-notes .notes-content .delete-note-button button
+/* .modal-show-notes .notes-content .show-note .delete-note-button
+{
+  
+}*/
+.modal-show-notes .notes-content .buttons .remove-note
 {
     background-color:#dc3545;
     border: none;
@@ -791,6 +797,18 @@ height:100vh;
     display: block;
     width:200px;
     height:30px;
+    margin:0px 5px;
+}
+.modal-show-notes .notes-content .buttons .update-note
+{
+    background-color:#0DCAff;
+    border: none;
+    color:white;
+    cursor:pointer;
+    display: block;
+    width:200px;
+    height:30px;
+    margin:0px 5px;
 }
 .modal-show-notes .notes-content .delete-note-button button:hover
 {

@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
 import { showModalAdd } from '../../../actions/modal';
-import { removeActiveNote, startNewNote, updateNotesAsync } from '../../../actions/todo';
+import { removeActiveTodo, startNewNote, updateNotesAsync } from '../../../actions/todo';
 import { Toast } from '../../../alerts/alert';
 import { useForm } from '../../../hooks/useForm';
 
@@ -21,7 +21,7 @@ export const Form = ( { setShowForm } ) => {
 
     const dispatch = useDispatch();
     const { mode } = useSelector(state => state.modal);
-    const { titleActive, descriptionActive, id } = useSelector(state => state.active);
+    const { titleActive, descriptionActive, idActive } = useSelector(state => state.active);
     
 
     useEffect(() => {
@@ -52,7 +52,7 @@ export const Form = ( { setShowForm } ) => {
                 dispatch(updateNotesAsync({
                     titleActive, 
                     descriptionActive,
-                    id
+                    idActive,
                 }, note));
                 dispatch(showModalAdd());
             }
@@ -63,7 +63,7 @@ export const Form = ( { setShowForm } ) => {
             });
         }
         setShowForm(false);
-        dispatch(removeActiveNote());
+        dispatch(removeActiveTodo());
     }
 
     const isValidate = () => {
@@ -111,7 +111,7 @@ export const Form = ( { setShowForm } ) => {
                 value="CANCEL"
                 onClick={() => {
                     setShowForm(false)
-                    dispatch(removeActiveNote());
+                    dispatch(removeActiveTodo());
                 }}
             />
         </form>)

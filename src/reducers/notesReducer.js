@@ -1,9 +1,10 @@
 import { types } from "../types/types";
 
-const initialState = [ {
+const initialState = {
     date: null,
     notes: '',
-} ];
+    active:{}
+};
 
 export const notesReducer = (state = initialState, action) => {
     switch (action?.type) {
@@ -27,6 +28,10 @@ export const notesReducer = (state = initialState, action) => {
         case types.resetNote:
             return {
                 state: state.state.map( note => note.id === action.payload? { ...note, isEliminated: false }: note)
+            }
+        case types.updateNote:
+            return {
+                state: state.state.map( note => note.id === action.payload.id ? action.payload : note)
             }
         default:
             return state;

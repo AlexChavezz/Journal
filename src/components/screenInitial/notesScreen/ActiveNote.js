@@ -1,11 +1,10 @@
 import React from 'react'
 import { useDispatch } from 'react-redux';
-import { removeNoteAsync } from '../../../actions/notes';
+import { activeNote, removeNoteAsync } from '../../../actions/notes';
 
 export const ActiveNote = (props) => {
 
     const dispatch = useDispatch();
-
     const handleClose = () => {
         props.setstate(false);
     }
@@ -13,6 +12,13 @@ export const ActiveNote = (props) => {
     const handleRemove = () => {
         dispatch(removeNoteAsync( props.id ));
         props.setstate(false);
+    }
+    const handleUpdate = () => {
+        handleClose();
+        props.handleChangeState();
+        dispatch(activeNote({
+            ...props
+        }));
     }
 
     return (
@@ -32,11 +38,18 @@ export const ActiveNote = (props) => {
                 <div className="show-note">
                     <p className="parrafo">{props.note}</p>
                 </div>
-                <div className="delete-note-button">
+                <div className="buttons">
                     <button 
+                    className="remove-note"
                     onClick={ handleRemove }
                     >
                         DELETE
+                    </button>
+                    <button 
+                    className="update-note"
+                    onClick={ handleUpdate }
+                    >
+                        UPDATE
                     </button>
                 </div>
             </div>

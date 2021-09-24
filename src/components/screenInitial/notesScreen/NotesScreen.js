@@ -28,7 +28,7 @@ export const NotesScreen = () => {
                 </svg>
             </div>
             {
-                state.map( note => note.isEliminated === false && <NoteCreate key={ note.id }{...note}/>)
+                state.map( note => note.isEliminated === false && <NoteCreate key={ note.id }{...note} handleChangeState={handleChangeState}/>)
             }
             </div>
            

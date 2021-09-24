@@ -76,6 +76,27 @@ export const resetNoteAsync = (id) => {
         dispatch(resetNote(id));
     }
 }
+export const updateNoteAsync = (id, newnote) => {
+    return async (dispatch, getstate) => {
+        const { uid } = getstate().auth;
+
+        updateDoc(doc(db, `/${uid}/journal/notes/${id}`), newnote)
+        .then( () => {
+            // dispatch(updateNote(id, newnote));
+            Toast.fire({
+                icon: 'success',
+                title: 'Note Updated',
+            });
+        }).catch( (err) => {
+            Toast.fire({
+                icon: 'error',
+                title: 'Error',
+                text:'Error Try again',
+            });   
+        });
+        dispatch(updateNote(id, newnote));
+    }
+}
 export const deleteNoteAsync = ( id ) => {
     return ( dispatch, getstate ) => {
         const { uid } = getstate().auth;
@@ -111,4 +132,20 @@ export const deleteNote = ( id ) => ({
 export const resetNote = ( id ) => ({
     type: types.resetNote,
     payload: id,
-})
+});
+export const updateNote = ( id, note ) => ({
+    type: types.updateNote,
+    payload:{
+        id, 
+        ...note
+    }
+});
+export const activeNote = (note) => ({
+    type: types.noteActive,
+    payload: {
+        ...note
+    }
+});
+export const removeActiveNote =()=>({
+    type:types.removeActiveNote,
+});

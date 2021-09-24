@@ -25,12 +25,15 @@ export const types = {
     modeEdit: '[modal] mode edit active',
     modeAdd: '[modal] mode add active',
 
+    todoActive: '[active] active todo',
+    removeTodoActive: '[active] remove active todo',
     noteActive: '[active] active note',
-    removeNoteActive: '[active] remove active note',
-    
+    removeActiveNote:'[active] remove active note',
+
     loadNote: '[notes] load notes',
     addNote: '[notes] Add New Note',
     removeNote: '[notes] remove note',
     deleteNote:'[notes] delete note',
+    updateNote:'[notes] update note',
     resetNote: '[notes] reset note',
 }

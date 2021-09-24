@@ -95,8 +95,8 @@ export const resetTodoAsync = (id) => {
 }
 
 export const updateNotesAsync = (todo, newTodo) => {
-    return (dispatch, setstate) => {
-        const { uid } = setstate().auth;
+    return (dispatch, getstate) => {
+        const { uid } = getstate().auth;
         updateDoc(doc(db, `/${uid}/journal/toDoList/${todo.id}`), newTodo)
             .then(() => {
                 Toast.fire({
@@ -141,13 +141,13 @@ export const updateNote = ( id , note) => ({
 });
 
 export const activeNote = (note) => ({
-    type: types.noteActive,
+    type: types.todoActive,
     payload: {
         ...note
     }
 });
-export const removeActiveNote = () => ({
-    type: types.removeNoteActive,
+export const removeActiveTodo = () => ({
+    type: types.removeTodoActive,
 });
 export const resetTodo = (id) => ({
     type: types.resetTodo,
