@@ -20,7 +20,7 @@ export const Modal = ({ handleChangeState }) => {
     const dispatch = useDispatch();
 
     const handleAddNote = () => {
-
+        handleChangeState(); 
         if (notes.note){
             setValues({
                 ...values,
@@ -31,9 +31,10 @@ export const Modal = ({ handleChangeState }) => {
                 note: note,
                 isEliminated: false
             }
-            dispatch(updateNoteAsync( notes.id, noteToUpdate));
-            handleChangeState(); 
-        
+            if( isFormValidate() ){
+                dispatch(updateNoteAsync( notes.id, noteToUpdate));
+                handleChangeState();   
+            }         
         }else{
         const newNote = {
             date: new Date().getTime(),
