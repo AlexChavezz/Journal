@@ -16,6 +16,7 @@ export const activeReducer = ( state = initialState, action ) => {
         case types.todoActive:
             
             return {
+                ...state,
                 ...action.payload
             }
         case types.removeTodoActive:

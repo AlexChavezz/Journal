@@ -14,9 +14,9 @@ export const Modal = ({ handleChangeState }) => {
         note:notes.note,
         isEliminated: null,    
     });
-
-
+    
     const { note } = values;
+    
     const dispatch = useDispatch();
 
     const handleAddNote = () => {

@@ -49,11 +49,7 @@ export const Form = ( { setShowForm } ) => {
                 dispatch(startNewNote(note));
             } else if (mode === 'edit') {
     
-                dispatch(updateNotesAsync({
-                    titleActive, 
-                    descriptionActive,
-                    idActive,
-                }, note));
+                dispatch(updateNotesAsync( idActive, note ));
                 dispatch(showModalAdd());
             }
         }else{
