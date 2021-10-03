@@ -1,17 +1,10 @@
-import { createUserWithEmailAndPassword, GoogleAuthProvider, signInWithPopup,signInWithEmailAndPassword, updateProfile, signOut } from "firebase/auth";
+import { createUserWithEmailAndPassword, GoogleAuthProvider, signInWithRedirect, signInWithEmailAndPassword, updateProfile, signOut, FacebookAuthProvider } from "firebase/auth";
 import { auth } from "../firebase/firebase_config";
 import { types } from '../types/types';
 import { finishLoading } from "./ui";
 import Swal from 'sweetalert2'
 import { stopLoadingPage } from "./loading";
 
-// export const loginWithEmailAndpassword = (email, password) => {
-//     return (dispatch) => {
-//         setTimeout(() => {
-//             dispatch(login(23234, 'alexis'))
-//         }, 3500);
-//     }
-// }
 export const registerWithEmailAndPasword = (email, password, name) => {
     return ( dispatch ) => {
         createUserWithEmailAndPassword(auth, email, password).then( ({ user }) => {
@@ -49,21 +42,21 @@ export const LoginWithEmailAndPassword = ( email, password ) => {
         });
     }
 }
-// export const loginWithFacebook = () => {
-//     const provider = new FacebookAuthProvider();
-//     return ( dispatch ) => {
-//         signInWithPopup(auth, provider)
-//         .then( (user) => {
-//             const { uid, displayName } = user;
-//             dispatch(login(uid, displayName))
-//         })
-//         .catch(error => console.log(error))
-//     }
-// }
+export const loginWithFacebook = () => {
+    const provider = new FacebookAuthProvider();
+    return ( dispatch ) => {
+        signInWithRedirect(auth, provider)
+        .then( (user) => {
+            const { uid, displayName } = user;
+            dispatch(login(uid, displayName))
+        })
+        .catch(error => console.log(error))
+    }
+}
 export const loginWithGoogle = () => {
     const provider = new GoogleAuthProvider();
     return (dispatch) => {
-        signInWithPopup( auth, provider )
+        signInWithRedirect( auth, provider )
         .then( ({ user }) => {
             const { uid, displayName } = user;
             dispatch(login(uid, displayName))
