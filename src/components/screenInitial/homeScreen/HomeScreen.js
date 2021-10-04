@@ -20,10 +20,14 @@ export const HomeScreen = () => {
                     items.length !== 0 ?
                         (
                             <section className="section">
-                                <h3>You have {items.length} pending tasks</h3>
+                                <h3>You have <b>{items.length}</b> pending tasks</h3>
+                                <article className="article_table">
                                 <table className="home_table">
                                     <thead>
                                         <tr>
+                                            <th>
+                                                NO.
+                                            </th>
                                             <th>
                                                 TITLE
                                             </th>
@@ -34,11 +38,11 @@ export const HomeScreen = () => {
                                     </thead>
                                     <tbody>
                                         {
-                                            state.map(todo => todo.done === false && <PendingTodos {...todo} key={todo.id} />)
+                                            state.map((todo, index) => todo.done === false && <PendingTodos {...todo} key={todo.id} index={index}/>)
                                         }
                                     </tbody>
                                 </table>
-
+                                </article>
                             </section>
                         ) : ( 
                             <div className="alert_witout_pendings">

@@ -358,13 +358,15 @@
     margin:0px auto;
     color: #0f5132;
     background-color: #d1e7dd;
-    border-color: #badbcc;
+    border:1px solid  #badbcc;
     font-size:20px;
     text-transform: uppercase;
     display: flex;
     justify-content:center;
     align-items:center;
     margin-top:100px;
+    font-family:"Roboto";
+    font-weight:bold;
 }
 
 .container_home
@@ -400,8 +402,6 @@
 .container_home .text section
 {
     margin-top:50px;
-    width:100vw;
-    overflow: auto;
 }
 .container_home .text section h3
 {
@@ -463,13 +463,17 @@
 {
     overflow:auto;
 }
+.article_table
+{
+    overflow:auto;
+}
 .home_table
 {
     table-layout:fixed;    
     font-family:'Roboto';
     font-weight:bold;
     word-break: break-all;
-    width:1250px;
+    width:1000px;
 }
 .table
 {
@@ -1104,6 +1108,11 @@ height:100vh;
     {
         width:100vw;
     }
+    .article_table
+    {
+        width:100vw;
+    }
+
 }
 @media( max-width: 893px)
 {
