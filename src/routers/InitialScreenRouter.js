@@ -1,7 +1,7 @@
 import React, { createRef } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { NavLink, Redirect, Route, Switch } from 'react-router-dom';
-import { startLogout } from '../actions/auth';
+import { startLogout, updateUserPassword } from '../actions/auth';
 import { HomeScreen } from '../components/screenInitial/homeScreen/HomeScreen';
 import { NotesScreen } from '../components/screenInitial/notesScreen/NotesScreen';
 import { RecycleScreenNotes } from '../components/screenInitial/recycleScreen/notesRecycle/RecycleScreenNotes';
@@ -25,6 +25,9 @@ export const InitialScreenRouter = () => {
         } else if (status === 'block') {
             ref.current.style.display = 'none';
         }
+    }
+    const handleUpdatePassword = () => {
+        dispatch(updateUserPassword());
     }
 
     return (
@@ -61,6 +64,12 @@ export const InitialScreenRouter = () => {
                             onClick={handleSingout}
                         >
                             <p className="logout">logout</p>
+                        </div>
+                        <div
+                            className="option"
+                            onClick={handleUpdatePassword}
+                        >
+                            <p className="logout">Update Password</p>
                         </div>
                     </div>
                 </div>

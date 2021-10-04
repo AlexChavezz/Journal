@@ -1,16 +1,14 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { showModalEdit } from '../../../actions/modal';
-import { activeNote, removeTodoAsync } from '../../../actions/todo';
+import { activeNote, removeTodoAsync, updateNotesAsync } from '../../../actions/todo';
 
-export const NotesList = ({ title, description, done, id, setShowForm }) => {
-
+export const NotesList = ({ title, description, done, id, isEliminated, setShowForm }) => {
     const dispatch = useDispatch();
-
+    const [isDone, setDone] = useState(done);
 
 
     const handleDelete = () => {
-        // dispatch(removeNoteAsync(id));
         dispatch(removeTodoAsync(id));
     }
     const handleUpdate = () => {
@@ -22,10 +20,22 @@ export const NotesList = ({ title, description, done, id, setShowForm }) => {
         }));
         dispatch(showModalEdit());
     }
-
-
+    const handleCheckboxChange = () => {
+        setDone(!isDone);
+        const noteToUpdate = {
+            title,
+            description,
+            done: !isDone,
+            isEliminated,
+        }
+        dispatch(updateNotesAsync(id, noteToUpdate));
+    }  
+ 
     return (
         <tr>
+            <td>
+                <input type="checkbox" className="checkbox" checked={isDone} onChange={handleCheckboxChange} />
+            </td>
             <td>
                 {title}
             </td>

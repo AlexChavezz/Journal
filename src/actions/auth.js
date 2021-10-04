@@ -1,4 +1,4 @@
-import { createUserWithEmailAndPassword, GoogleAuthProvider, signInWithRedirect, signInWithEmailAndPassword, updateProfile, signOut, FacebookAuthProvider } from "firebase/auth";
+import { createUserWithEmailAndPassword, GoogleAuthProvider, signInWithRedirect, signInWithEmailAndPassword, updateProfile, signOut, FacebookAuthProvider, getAuth, updatePassword } from "firebase/auth";
 import { auth } from "../firebase/firebase_config";
 import { types } from '../types/types';
 import { finishLoading } from "./ui";
@@ -63,8 +63,22 @@ export const loginWithGoogle = () => {
         })
         .catch(error => console.log(error))
     }
-
 }
+
+export const updateUserPassword = () => {
+    return ( dispatch ) => {
+        const auth = getAuth();
+        const user = auth.currentUser;
+        console.log(auth.currentUser)
+        const newPassword = 'alexiss';
+        updatePassword(user, newPassword).then( () => {
+            Swal.fire('success', 'Password Updated Successfully','success');
+        }).catch((error) => {
+            Swal.fire('error', 'It was at error try again','ERROR');
+        });    
+    }
+}
+
 export const login = (uid, displayName) => ({
     type: types.login,
     payload: {

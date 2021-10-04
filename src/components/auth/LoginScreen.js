@@ -33,11 +33,6 @@ export const LoginScreen = () => {
 
     return (
         <div className="auth">
-            {/* <div className="container">
-            <header className="auth-header">
-                <h1>The perfect place to save you tasks</h1>
-            </header>
-            </div> */}
             <div className="container">
                 <h3>Login</h3>
                 <form

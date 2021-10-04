@@ -146,10 +146,13 @@ export const activeNote = (note) => ({
         ...note
     }
 });
+
 export const removeActiveTodo = () => ({
     type: types.removeTodoActive,
 });
+
 export const resetTodo = (id) => ({
     type: types.resetTodo,
     payload:id,
 });
+

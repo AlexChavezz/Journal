@@ -32,6 +32,9 @@ export const TodoScreen = () => {
                     <thead>
                         <tr>
                             <th>
+                                DONE
+                            </th>
+                            <th>
                                 TITLE
                             </th>
                             <th>
