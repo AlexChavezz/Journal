@@ -2,6 +2,8 @@ import React, { createRef } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { NavLink, Redirect, Route, Switch } from 'react-router-dom';
 import { startLogout, updateUserPassword } from '../actions/auth';
+import { emptyNotes } from '../actions/notes';
+import { emptyTodos } from '../actions/todo';
 import { HomeScreen } from '../components/screenInitial/homeScreen/HomeScreen';
 import { NotesScreen } from '../components/screenInitial/notesScreen/NotesScreen';
 import { RecycleScreenNotes } from '../components/screenInitial/recycleScreen/notesRecycle/RecycleScreenNotes';
@@ -15,7 +17,9 @@ export const InitialScreenRouter = () => {
     const { name } = useSelector(state => state.auth)
     const dispatch = useDispatch();
     const handleSingout = () => {
-        dispatch(startLogout())
+        dispatch(startLogout());
+        dispatch(emptyTodos());
+        dispatch(emptyNotes());
     }
     const ref = createRef();
     const handleShowAside = () => {

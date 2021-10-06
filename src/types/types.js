@@ -21,6 +21,7 @@ export const types = {
     deleteTodo: '[todo delete note]',
     updateTodo: '[todo] update note',
     resetTodo: '[todo] reset todo',
+    emptyTodos:'[todo] empty todos',
     
     modeEdit: '[modal] mode edit active',
     modeAdd: '[modal] mode add active',
@@ -36,4 +37,5 @@ export const types = {
     deleteNote:'[notes] delete note',
     updateNote:'[notes] update note',
     resetNote: '[notes] reset note',
+    emptyNotes:'[notes] empty notes',
 }

@@ -156,3 +156,7 @@ export const resetTodo = (id) => ({
     payload:id,
 });
 
+export const emptyTodos = () => ({
+    type: types.emptyTodos,
+});
+

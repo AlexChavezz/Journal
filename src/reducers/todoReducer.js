@@ -18,7 +18,6 @@ export const todoReducer = (state = initialState, action) => {
             }
         case types.removeTodo: 
         return {   
-            // state: state.state.filter( note => note.id !== action.payload),
                 state: state.state.map( note => note.id === action.payload? { ...note, isEliminated: true } : note )
             }
         case types.deleteTodo: 
@@ -37,6 +36,8 @@ export const todoReducer = (state = initialState, action) => {
         //     return {
         //         state: state.state.map( note => note.id === action.payload.id? {...note, done:!action.payload.done }: note )
         //     }
+        case types.emptyTodos:
+                return [];
             
         default:
             return state;

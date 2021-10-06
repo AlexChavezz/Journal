@@ -149,3 +149,7 @@ export const activeNote = (note) => ({
 export const removeActiveNote =()=>({
     type:types.removeActiveNote,
 });
+
+export const emptyNotes = () => ({
+    type: types.emptyNotes,
+});
