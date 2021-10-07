@@ -749,6 +749,7 @@ height:100vh;
     resize: none;
     font-family:'Roboto';
     font-size:17px;
+    font-weight:bold;
 }
 .modal-notes  .modal-content-notes .buttons-notes .btn-save, .btn-cancel
 {
