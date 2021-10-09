@@ -658,7 +658,7 @@ height:100vh;
     border-radius:10px;
     animation: options-animation 450ms linear;
 }
-option:hover
+.option:hover
 {
     background-color: rgb(59, 58, 58);
     cursor:pointer;
@@ -1009,6 +1009,7 @@ option:hover
 }
 .container_todos
 {
+    animation: notesandtodos-animation 150ms linear;
     margin: 0px auto;
     width:90%;
     padding-top:40px;   
@@ -1081,11 +1082,12 @@ option:hover
 }
 .notes_container .target_notes
 {
+    animation: notesandtodos-animation 150ms linear;
+    cursor:auto;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
     overflow: auto;
-    cursor:auto;
 }
 .notes_container .target_notes p 
 {
@@ -1096,6 +1098,15 @@ option:hover
     height:30px;
     margin:10px 0px;
 }
+@keyframes notesandtodos-animation {
+    from{
+        opacity:0;
+    }to{
+        opacity:1;
+    }
+}
+
+/* RESPONSIVE */
 
 @media (max-width: 1270px){
     aside{
