@@ -7,8 +7,7 @@ export const NotesScreen = () => {
 
     const [status, setstatus] = useState(false);
 
-    const {state} = useSelector(state => state.notes)
-
+    const { state } = useSelector(state => state.notes)
 
     const handleChangeState = () => {
         setstatus(!status);

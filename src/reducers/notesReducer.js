@@ -2,7 +2,7 @@ import { types } from "../types/types";
 
 const initialState = {
     date: null,
-    notes: '',
+    notes: [],
     active:{}
 };
 
@@ -34,7 +34,9 @@ export const notesReducer = (state = initialState, action) => {
                 state: state.state.map( note => note.id === action.payload.id ? action.payload : note)
             }
         case types.emptyNotes:
-            return initialState;
+            return {
+                state: state = []
+            };
         default:
             return state;
     }

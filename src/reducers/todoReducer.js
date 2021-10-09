@@ -37,8 +37,9 @@ export const todoReducer = (state = initialState, action) => {
         //         state: state.state.map( note => note.id === action.payload.id? {...note, done:!action.payload.done }: note )
         //     }
         case types.emptyTodos:
-                return [];
-            
+            return {
+                state: state.state = []
+            };
         default:
             return state;
     }

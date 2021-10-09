@@ -296,7 +296,7 @@
 {
     cursor:pointer;
     padding:5px;
-    border-radius:2px;
+    border-radius:7px;
     font-family:'Roboto';
     font-size:12px;
     font-weight:bold;
@@ -310,8 +310,7 @@
 }
 .journal-header .user span:hover
 {
-    background-color: white;
-    color:black;
+    background-color: rgb(59, 58, 58);
 }
 
 .journal-header h1
@@ -549,7 +548,6 @@ thead th:nth-child(4)
 .notes .target:hover svg
 {
     fill:white;
-
 }
 
 /* LOADING */
@@ -614,32 +612,64 @@ height:100vh;
   }
   
   .dropdown-content {
+    border-top-left-radius: 10px;
+    border-bottom-left-radius: 10px;
     display: none;
     position: absolute;
-    top:35px;
+    top:50px;
     right:0px;
-    background-color: #ccc;
-    min-width: 160px;
+    background-color: #202020;
+    min-width: 300px;
+    min-height:200px;
     box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
     padding: 12px 16px;
     z-index: 1;
+    animation: animation-slide 100ms linear;
   }
   
-.dropdown:hover .dropdown-content {
+.dropdown-content {
     display: block;
+}
+.dropdown .dropdown-content .option
+{
+    display:flex;
+    border-radius:10px;
+    animation: options-animation 400ms linear;
+}
+.dropdown .dropdown-content .option:hover
+{
+    background-color: rgb(59, 58, 58);
+    cursor:pointer;
+}
+.dropdown .dropdown-content .option p, img
+{
+    margin:0px 10px 0px 10px;
 }
 .dropdown .dropdown-content .option p
 {
-    color:#181818;
+    color:white;
     cursor:pointer;
     margin:20px 0px 20px 0px;
+    letter-spacing:.5px
 }
-
-.dropdown .dropdown-content .option p > .logout
-{
-    color:red;
+@keyframes animation-slide {
+    from {
+        transform: translateY(-20px);
+        opacity: 0;
+    }to{
+        transform: translateY(0px);
+        opacity: 1;
+    }
 }
-
+@keyframes options-animation {
+    from {
+        transform: translateX(-20px);
+        opacity: 0;
+    }to{
+        transform: translateX(0px);
+        opacity: 1;
+    }
+}
 /* MODAL  TODOS*/
 .modal
 {
