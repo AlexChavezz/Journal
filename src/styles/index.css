@@ -294,6 +294,7 @@
 }
 .journal-header .user span
 {
+    user-select: none;
     cursor:pointer;
     padding:5px;
     border-radius:7px;
