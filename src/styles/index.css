@@ -651,9 +651,40 @@ height:100vh;
     z-index: 1;
     animation: animation-slide 100ms linear;
     margin-top:5px;
-}  
+}
+
+.img-user
+{
+    display: block;
+    width:50px;
+    height: 50px;
+    border-radius:10px;
+    user-select:auto;
+    margin-right:30px;
+}
+.user-option
+{
+    align-items:center;
+    border-radius:10px;
+    color:white;
+    display:flex;
+    font-weight:bold;
+    font-family:'Roboto';
+    justify-content: center;
+    letter-spacing:1px;
+    margin-bottom:10px;
+    user-select: none;
+    min-height:70px;
+}
+.hr
+{
+    width:100%;
+    border-top: 1px solid white;
+    border-radius: 5px;
+}
 .option
 {
+    margin-top:100px;
     display:flex;
     border-radius:10px;
     animation: options-animation 450ms linear;
@@ -674,7 +705,8 @@ height:100vh;
     margin:20px 0px 20px 0px;
     letter-spacing:.5px
 }
-@keyframes animation-slide {
+@keyframes animation-slide 
+{
     from {
         transform: translateY(-20px);
         opacity: 0;

@@ -4,7 +4,6 @@ import { types } from '../types/types';
 import { finishLoading } from "./ui";
 import Swal from 'sweetalert2'
 import { stopLoadingPage } from "./loading";
-
 export const registerWithEmailAndPasword = (email, password, name) => {
     return ( dispatch ) => {
         createUserWithEmailAndPassword(auth, email, password).then( ({ user }) => {
@@ -57,14 +56,13 @@ export const loginWithGoogle = () => {
     const provider = new GoogleAuthProvider();
     return (dispatch) => {
         signInWithRedirect( auth, provider )
-        .then( ({ user }) => {
-            const { uid, displayName } = user;
-            dispatch(login(uid, displayName))
+        .then( ( {user} ) => {
+            const { uid, displayName, photoURL } = user;
+            dispatch(login(uid, displayName, photoURL));
         })
         .catch(error => console.log(error))
     }
 }
-
 export const updateUserPassword = () => {
     return ( dispatch ) => {
         const auth = getAuth();
@@ -79,11 +77,12 @@ export const updateUserPassword = () => {
     }
 }
 
-export const login = (uid, displayName) => ({
+export const login = (uid, displayName, photoURL) => ({
     type: types.login,
     payload: {
         uid,
         displayName,
+        photoURL
     }
 });
 export const startLogout = () => {

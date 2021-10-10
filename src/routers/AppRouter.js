@@ -26,7 +26,7 @@ export const AppRouter = () => {
     useEffect(() => {
         onAuthStateChanged(auth, async ( user ) => {
             if( user?.uid ){
-                dispatch(login(user.uid, user.displayName));
+                dispatch(login(user.uid, user.displayName, user.photoURL));
                 setLoggedIn(true);
                 dispatch(startLodingPage());
                 await dispatch(loadTodosAsync(user.uid));
