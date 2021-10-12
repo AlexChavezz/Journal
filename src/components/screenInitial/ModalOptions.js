@@ -1,6 +1,6 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import LogoutLogo from '../../logout_white_24dp.svg';
+import LogoutLogo from '../../pictures/logout_white_24dp.svg';
 import { startLogout } from '../../actions/auth';
 import { emptyNotes } from '../../actions/notes';
 import { emptyTodos } from '../../actions/todo';

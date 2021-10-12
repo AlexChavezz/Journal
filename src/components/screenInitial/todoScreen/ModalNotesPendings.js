@@ -1,8 +1,8 @@
 import React from 'react';
 import { useDispatch } from 'react-redux';
 import { updateNotesAsync } from '../../../actions/todo';
-import close_button from '../../../close_black_24dp.svg'; 
-import doneImg from '../../../done_black_24dp.svg';
+import close_button from '../../../pictures/close_black_24dp.svg'; 
+import doneImg from '../../../pictures/done_black_24dp.svg';
 export const ModalNotesPendings = ({handleChangeStatus, title, description, done, isEliminated, id}) => {
 
     const dispatch = useDispatch();

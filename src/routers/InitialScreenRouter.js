@@ -8,7 +8,7 @@ import { RecycleScreenNotes } from '../components/screenInitial/recycleScreen/no
 import { RecycleScreen } from '../components/screenInitial/recycleScreen/RecycleScreen';
 import { RecycleScreenTodos } from '../components/screenInitial/recycleScreen/todosRecycle/RecycleScreenTodos';
 import { TodoScreen } from '../components/screenInitial/todoScreen/TodoScreen';
-import manageAccoutLogo from '../manage_accounts_white_24dp.svg';
+import manageAccoutLogo from '../pictures/manage_accounts_white_24dp.svg';
 export const InitialScreenRouter = () => {
 
     const { name } = useSelector(state => state.auth);
