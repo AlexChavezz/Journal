@@ -33,7 +33,7 @@ export const LoginWithEmailAndPassword = ( email, password ) => {
         })
         .catch(( e ) => {
             dispatch( finishLoading() );
-            dispatch(stopLoadingPage())
+            dispatch(stopLoadingPage());
 
             e.message === "Firebase: Error (auth/user-not-found)."? Swal.fire('ERROR', 'This user does not exist','error') 
             :
@@ -46,8 +46,9 @@ export const loginWithFacebook = () => {
     return ( dispatch ) => {
         signInWithRedirect(auth, provider)
         .then( (user) => {
-            const { uid, displayName } = user;
-            dispatch(login(uid, displayName))
+            console.log(user)
+            const { uid, displayName, photoURL } = user;
+            dispatch(login(uid, displayName, photoURL))
         })
         .catch(error => console.log(error))
     }

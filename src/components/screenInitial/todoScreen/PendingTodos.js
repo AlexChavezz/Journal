@@ -1,11 +1,24 @@
-import React from 'react'
-
+import React, { useState } from 'react'
+import { ModalNotesPendings } from './ModalNotesPendings';
 export const PendingTodos = (props) => {
-    return (
-      <tr>
-          <td>{props.index + 1}</td>
-          <td>{props.title}</td>
-          <td>{props.description}</td>
-      </tr>
-    )
+
+  const [ modal, setmodal ] = useState(false);
+
+  const handleChangeStatus = () => {
+    setmodal(!modal);
+  }
+
+  return (
+    <>
+      <article
+        className="note"
+        onClick={handleChangeStatus}
+      >
+        <p>{props.title}</p>
+      </article>
+      {
+        modal && <ModalNotesPendings handleChangeStatus={handleChangeStatus} {...props} />
+      }
+    </>
+  );
 }

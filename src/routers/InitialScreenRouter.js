@@ -32,7 +32,9 @@ export const InitialScreenRouter = () => {
     }
 
     return (
-        <div className="journal">
+        <div 
+        className="journal"
+        >
 
             <header className="journal-header">
                 <div className="menu"

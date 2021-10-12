@@ -393,24 +393,139 @@
 }
 .text p
 {
-    margin:20px 0px 40px 0px;
+    color:white;
 }
 .text h3 b
 {
     color:green;
 }
+.container_home
+{
+    overflow:auto;
+}
 .container_home .text section
 {
     margin-top:50px;
 }
+.container_home .text section .items-container
+{
+    display: flex;
+    justify-content:center;
+    flex-wrap: wrap;
+}
+.container_home .text section article
+{
+    display: flex;
+}
+.container_home .text section .background .pendings-modal
+{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width:100vw;
+    height:90vh;
+}
+.container_home .text section .background .pendings-modal .info
+{
+    animation: info-modal-animation 200ms linear;
+    align-items:center;
+    background-color:white;
+    border-radius:5px;
+    box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
+    flex-direction: column;
+    min-height:200px;
+    width:500px;
+}
+@keyframes info-modal-animation{
+    from{
+        transform: translateY(-20px);
+        opacity:0;
+    }to{
+        transform: translateY(0px);
+        opacity:1;
+    }
+}
+.container_home .text section .background .pendings-modal .info .close-button
+{
+    width:40px;
+    height:40px;
+    cursor:pointer;
+    align-self: flex-end;
+    margin: 10px 10px 0px 0px;
+}
+.container_home .text section .background .pendings-modal .info .todo
+{
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    width:90%;
+    min-height:50px;
+}
+.container_home .text section .background .pendings-modal .info .actions-pendings
+{
+    display:flex;
+    justify-content:center;
+    width:80%;
+    margin:20px 0px;
+}
+.container_home .text section .background .pendings-modal .info .actions-pendings button
+{
+    align-items:center;
+    background-color: #0dcaf0;
+    border: 1px solid #0dcaf0;
+    border-radius:4px;
+    color: #fff;
+    cursor: pointer;
+    outline: none;
+    display:flex;
+    margin:0px 20px;
+    height:30px;
+    justify-content:center;
+    width:100px;
+}
+.container_home .text section .background .pendings-modal .info .actions-pendings button:hover
+{
+    box-shadow: 3px 3px 0px #0dcaf0;
+}
+
+.container_home .text section .background .pendings-modal .info .actions-pendings button img
+{
+    margin:0px 5px 0px 0px;
+    padding:0px;
+    width:15px;
+    height:15px;
+}
+
 .container_home .text section h3
 {
     font-size:25px;
-    font-family:"Roboto";
+    font-family:'Roboto';
     font-weight: bold;
-    margin:0px;
     text-transform: uppercase;
     padding:20px;
+    text-align:center;
+}
+.container_home .text section .note
+{
+    background-color:#343a40;
+    /* border: 1px solid #ccc; */
+    cursor:pointer;
+    height:50px;
+    width:200px;
+    display: flex;
+    justify-content: center;
+    align-items:center;
+    border-radius:6px;
+    margin:10px 20px;
+}
+.container_home .text section .note:hover
+{
+    /* background-color: rgb(149, 134, 184); */
+    background-color: gold;
+}
+.container_home .text section .note:hover p
+{
+    color: #181818;
 }
 .container_home .footer 
 {
@@ -463,10 +578,7 @@
 {
     overflow:auto;
 }
-.article_table
-{
-    overflow:auto;
-}
+
 .home_table
 {
     table-layout:fixed;    
@@ -1204,11 +1316,6 @@ height:100vh;
     {
         width:100vw;
     }
-    .article_table
-    {
-        width:100vw;
-    }
-
 }
 @media( max-width: 893px)
 {

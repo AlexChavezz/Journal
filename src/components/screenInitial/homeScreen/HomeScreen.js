@@ -15,34 +15,16 @@ export const HomeScreen = () => {
                 <h3>Hello  <b>{name}</b></h3>
                 <p>This is the Perfect place to save whatever you want.</p>
                 <hr />
-
                 {
                     items.length !== 0 ?
                         (
                             <section className="section">
-                                <h3>You have <b>{items.length}</b> pending tasks</h3>
-                                <article className="article_table">
-                                <table className="home_table">
-                                    <thead>
-                                        <tr>
-                                            <th>
-                                                NO.
-                                            </th>
-                                            <th>
-                                                TITLE
-                                            </th>
-                                            <th>
-                                                DESCRIPTION
-                                            </th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        {
-                                            state.map((todo, index) => todo.done === false && <PendingTodos {...todo} key={todo.id} index={index}/>)
-                                        }
-                                    </tbody>
-                                </table>
-                                </article>
+                                <h3>Whats there to do ?</h3>
+                                <div className="items-container">
+                                {
+                                   items.map( item => !item.isEliminated && <PendingTodos {...item} key={item.id} /> )
+                               }
+                                </div>
                             </section>
                         ) : ( 
                             <div className="alert_witout_pendings">
