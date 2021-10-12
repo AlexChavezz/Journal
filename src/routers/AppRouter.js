@@ -5,13 +5,14 @@ import { useDispatch, useSelector } from 'react-redux';
 import {
     BrowserRouter as Router,
     Switch,
-
+    Route,
     Redirect,
 } from "react-router-dom";
 import { login } from '../actions/auth';
 import { startLodingPage, stopLoadingPage } from '../actions/loading';
 import { loadNotesAsync } from '../actions/notes';
 import { loadTodosAsync } from '../actions/todo';
+import { PrivacyPolicy } from '../components/screenInitial/PrivacyPolicy/PrivacyPolicy';
 import { auth } from '../firebase/firebase_config';
 import { AuthRouter } from './AuthRouter';
 import { InitialScreenRouter } from './InitialScreenRouter';
@@ -49,7 +50,7 @@ export const AppRouter = () => {
         <Router>
             <div>
                 <Switch>
-
+                
                     <PublicRoutes 
                     path="/auth" 
                     component = { AuthRouter}
@@ -60,7 +61,7 @@ export const AppRouter = () => {
                     component = { InitialScreenRouter }
                     isAuthenticated = { isLoggedIn }
                     />
-
+                    <Route exact path="/privacy-policy" component={ PrivacyPolicy } />
                     <Redirect to="/auth/login"/>
 
                 </Switch>

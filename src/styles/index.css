@@ -507,6 +507,7 @@
 }
 .container_home .text section .note
 {
+    animation: animation-note 50ms linear; 
     background-color:#343a40;
     /* border: 1px solid #ccc; */
     cursor:pointer;
@@ -517,6 +518,13 @@
     align-items:center;
     border-radius:6px;
     margin:10px 20px;
+}
+@keyframes animation-note {
+    from {
+        opacity: 0;
+    }to{
+        opacity:1;
+    }
 }
 .container_home .text section .note:hover
 {
@@ -794,9 +802,12 @@ height:100vh;
     border-top: 1px solid white;
     border-radius: 5px;
 }
+.logout-button
+{
+    margin-top:60px;
+}
 .option
 {
-    margin-top:100px;
     display:flex;
     border-radius:10px;
     animation: options-animation 450ms linear;
@@ -816,6 +827,10 @@ height:100vh;
     cursor:pointer;
     margin:20px 0px 20px 0px;
     letter-spacing:.5px
+}
+.option p a
+{
+    color:white;
 }
 @keyframes animation-slide 
 {
