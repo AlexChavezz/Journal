@@ -2,6 +2,7 @@ export const types = {
 
     login: '[auth] login',
     logout: '[auth] logout',
+    changeName: '[auth] change display name',
 
     uiSetError:'[ui] set error',
     uiRemoveError: '[ui] remove error',

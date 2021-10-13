@@ -66,6 +66,19 @@ export const deleteTodoAsync = (id) => {
         dispatch(deleteTodo(id));
     }
 }
+export const deleteAllTodoAsync = () => {
+    return ( dispatch, getstate )=>{
+        const { state: todos } = getstate().todos;
+        const {state: notes} = getstate().notes;
+        const { uid } = getstate().auth;
+        todos.forEach( ({ id }) => {
+            deleteDoc(doc(db, `/${uid}/journal/toDoList/${id}`));
+        });
+        notes.forEach(({id}) => {
+            deleteDoc(doc(db, `/${uid}/journal/notes/${id}`));
+        });
+    } 
+}
 export const resetTodoAsync = (id) => {
     return async (dispatch, setstate) => {
         const { uid } = setstate().auth;

@@ -1,6 +1,7 @@
 import React, { createRef, useState } from 'react';
 import { useSelector } from 'react-redux';
 import { NavLink, Redirect, Route, Switch } from 'react-router-dom';
+import { AcoountScreen } from '../components/screenInitial/accountScreen/AcoountScreen';
 import { HomeScreen } from '../components/screenInitial/homeScreen/HomeScreen';
 import { ModalOptions } from '../components/screenInitial/ModalOptions';
 import { NotesScreen } from '../components/screenInitial/notesScreen/NotesScreen';
@@ -102,6 +103,7 @@ export const InitialScreenRouter = () => {
                     <Route exact path="/journal/paperbin" component={RecycleScreen} />
                     <Route exact path="/journal/paperbin/todos" component={RecycleScreenTodos} />
                     <Route exact path="/journal/paperbin/notes" component={RecycleScreenNotes} />
+                    <Route exact path="/journal/myaccount" component={AcoountScreen} />
                     <Redirect exact to="/journal" />
                 </Switch>
             </div>

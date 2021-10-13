@@ -1,9 +1,21 @@
-import { createUserWithEmailAndPassword, GoogleAuthProvider, signInWithRedirect, signInWithEmailAndPassword, updateProfile, signOut, FacebookAuthProvider, getAuth, updatePassword } from "firebase/auth";
+import { createUserWithEmailAndPassword,
+    GoogleAuthProvider,
+    signInWithRedirect,
+    signInWithEmailAndPassword,
+    updateProfile,
+    signOut,
+    deleteUser,
+    FacebookAuthProvider,
+    getAuth,
+    updatePassword
+} from "firebase/auth";
 import { auth } from "../firebase/firebase_config";
 import { types } from '../types/types';
 import { finishLoading } from "./ui";
 import Swal from 'sweetalert2'
 import { stopLoadingPage } from "./loading";
+
+
 export const registerWithEmailAndPasword = (email, password, name) => {
     return ( dispatch ) => {
         createUserWithEmailAndPassword(auth, email, password).then( ({ user }) => {
@@ -64,6 +76,17 @@ export const loginWithGoogle = () => {
         .catch(error => console.log(error))
     }
 }
+export const startLogout = () => {
+    return (dispatch) => {
+        signOut(auth).then( () => {
+            dispatch(logout());
+        }).catch((e)=>{
+            console.log(e);
+        })
+        
+    }
+}
+// This is not ready
 export const updateUserPassword = () => {
     return ( dispatch ) => {
         const auth = getAuth();
@@ -77,6 +100,30 @@ export const updateUserPassword = () => {
         });    
     }
 }
+export const updateDisplayNameAsync = (newName) => {
+    return (dispatch) => {
+        updateProfile(auth.currentUser, {
+            displayName: newName,
+        }).then(() => {
+            Swal.fire('success', 'Name Updated Successfully','success');
+            dispatch(updateDisplayName(newName));
+        }).catch(()=> {
+            Swal.fire('error', 'It was at error try again','error');
+        });
+    }
+}
+export const deleteAccoout = () => {
+    return (dispatch) => {
+        const user = auth.currentUser;
+        deleteUser(user).then(() => {
+        });
+    }
+}
+
+const updateDisplayName = (newName) => ({
+    type: types.changeName,
+    payload: newName,
+});
 
 export const login = (uid, displayName, photoURL) => ({
     type: types.login,
@@ -86,13 +133,6 @@ export const login = (uid, displayName, photoURL) => ({
         photoURL
     }
 });
-export const startLogout = () => {
-    return dispatch =>{
-        signOut(auth).then( () => {
-            dispatch(logout());
-        });
-    }
-}
-export const logout = () => ({
+const logout = () => ({
     type:types.logout
 })

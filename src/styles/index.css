@@ -802,7 +802,7 @@ height:100vh;
     border-top: 1px solid white;
     border-radius: 5px;
 }
-.logout-button
+.account-option
 {
     margin-top:60px;
 }
@@ -1318,6 +1318,162 @@ height:100vh;
         height: calc(100vh - 50px);
     }
 }
+/*****
+******
+******
+******
+******
+******
+******
+******
+
+        ACCOUNT SCREEN
+
+******
+******
+******
+******
+******
+******
+******
+*****/
+.container-account
+{
+    border:1px solid black;
+    margin:0px auto;
+    width:1200px;
+    height:calc(100vh - 50px);
+}
+.container-account section
+{
+    display: flex;
+    align-items:center;
+    flex-direction:column;
+    width:100%;
+}
+.container-account section article 
+{
+    align-items:center;
+    display:flex;
+    width:70%;
+    margin-top:40px;
+    font-family:"Roboto";
+    font-weight:bold;
+}
+.container-account section span
+{
+    color:#f85149;
+    font-weight:bold;
+    font-size:20px;
+    font-family:"Roboto";
+}
+
+.container-account section .danger-zone
+{
+    display: flex;
+    justify-self: end;
+    align-items:center;
+    justify-content:center;
+    border:1px solid rgb(230, 102, 102);
+    animation: all 200ms;
+}
+.container-account section .danger-zone button
+{
+    animation: all 200ms;
+    background-color:#363B42;
+    border-radius:5px;
+    color:#f85149;
+    cursor: pointer;
+    padding:10px;
+    margin:20px;
+    font-weight:bold;
+    border:none;
+}
+
+.container-account section .danger-zone button:hover
+{
+    animation: animation-all 200ms linear; 
+    background-color: #DA3633;
+    color:white;
+    border-color:white;
+}
+
+
+@keyframes animation-all 
+{
+    from{
+        background-color:#21262D;
+    }   to{
+        background-color: #DA3633;
+    } 
+}
+.container-account section article img 
+{
+    border-radius:50%;
+    width:100px;
+    height:100px;
+}
+.container-account section article span
+{
+    font-size:20px;
+    font-family: "Roboto";
+    font-weight:bold;
+}
+.container-account section article form label
+{
+    display: flex;
+    align-items:center;
+}
+
+.container-account section article form label input[type="text"]
+{
+    display: block;
+    width: 100%;
+    padding: .375rem .75rem;
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 1.5;
+    color: #212529;
+    background-color: #fff;
+    background-clip: padding-box;
+    border: 1px solid #ced4da;
+    border-radius: .25rem;
+    margin:0px 40px;
+    width:150px;
+
+}
+.container-account section article form label  input[type="text"]:disabled
+{
+    background-color: #e9ecef;
+    color: #3c3e41;
+}
+.container-account section article form label .btn-primary
+{
+    margin:0px;
+    width:150px;
+    align-self:end;
+}
+.container-account section article form label .btn-secoundary
+{
+    background-color: #0dcaf0;
+    border-color: #0dcaf0;
+    color:#fff;
+    margin:0px 10px;
+    width:100px;
+}
+.container-account section article form label .btn-danger
+{
+    background-color:#dc3545;
+    margin:0px 10px;
+    color:white;
+    width:100px;    
+}
+
+
+
+
+
+
 @media( max-width: 1074px)
 {
     .modal-content

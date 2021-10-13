@@ -5,8 +5,8 @@ import { startLogout } from '../../actions/auth';
 import { emptyNotes } from '../../actions/notes';
 import { emptyTodos } from '../../actions/todo';
 import { Link } from 'react-router-dom';
-import policyLogo from '../.././pictures/policy_white_24dp.svg'; 
-
+import policyLogo from '../../pictures/policy_white_24dp.svg'; 
+import accountImg from '../../pictures/account_circle_white_24dp.svg';
 export const ModalOptions = ({ handleChangeStatus }) => {
     const dispatch = useDispatch();
     const {photoURL,name} = useSelector(state => state.auth);
@@ -29,19 +29,27 @@ export const ModalOptions = ({ handleChangeStatus }) => {
                     <p className="logout">{name}</p>
                 </div>
                 <hr  className="hr"/>
+                <Link to="/journal/myaccount">
                 <div
-                    className="option logout-button"
-                    onClick={handleSingout}
+                    className="option account-option"
                 >
-                    <img src={LogoutLogo} alt="loguout-logo" />
-                    <p className="logout">Logout</p>
-                </div>
+                    <img src={accountImg} alt="account-logo" />
+                    <p className="logout">Account</p>
+                </div>                
+                </Link>
                 <Link to="/privacy-policy">
                 <div className="option">
                     <img src={policyLogo} alt="policy-logo" />
                     <p>Privacy Policy</p>
                 </div>
                 </Link>
+                <div
+                    className="option"
+                    onClick={handleSingout}
+                >
+                    <img src={LogoutLogo} alt="loguout-logo" />
+                    <p className="logout">Logout</p>
+                </div>
                 {/* <div
                                 className="option"
                                 onClick={handleUpdatePassword}
