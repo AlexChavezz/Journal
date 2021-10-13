@@ -1439,7 +1439,6 @@ height:100vh;
     border: 1px solid #ced4da;
     border-radius: .25rem;
     margin:0px 40px;
-    width:150px;
 
 }
 .container-account section article form label  input[type="text"]:disabled
@@ -1459,14 +1458,95 @@ height:100vh;
     border-color: #0dcaf0;
     color:#fff;
     margin:0px 10px;
-    width:100px;
+    min-width:100px;
 }
 .container-account section article form label .btn-danger
 {
     background-color:#dc3545;
     margin:0px 10px;
     color:white;
-    width:100px;    
+    min-width:100px;    
+}
+.container-account .background
+{
+    align-items:center;
+    display:flex;
+    justify-content:center;
+    background-color: rgba(121, 119, 119, 0.5);
+}
+.container-account .background .delete-account-modal
+{
+    align-items: center;
+    animation:animation-modal-delete-account 200ms linear;
+    background-color: #fff;
+    box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
+    border-radius:10px;
+    height:50vh;
+    width:20%;
+    display:flex;
+    flex-direction: column;
+}
+.container-account .background .delete-account-modal img
+{
+    align-self:end;
+    cursor: pointer;
+    margin:15px;
+    height:50px;
+    width:50px;
+}
+.container-account .background .delete-account-modal .alert
+{
+    align-items: center;
+    border-radius:5px;
+    display:flex;
+    justify-content: center;
+    width:90%;
+    min-height:50px;
+    font-weight:bold;
+    font-family:"Roboto";
+    margin:10px 0px;
+}
+.container-account .background .delete-account-modal .danger
+{
+    background-color: #f8d7da;
+    border:1px solid #f5c2c7;
+    color: #842029;
+}
+.container-account .background .delete-account-modal .info
+{
+    background-color: #cff4fc;
+    border:1px solid #b6effb;
+    color: #055160;
+    padding:20px 40px;
+}
+.container-account .background .delete-account-modal button
+{
+    border:1px solid #0d6efd;
+    background-color: #0d6efd;
+    border-radius:5px;
+    color: #fff;
+    cursor:pointer;
+    margin-top:100px;
+    width:60%;
+    height:30px;
+}
+.container-account .background .delete-account-modal button:hover {
+    background-color:#181818;
+    color:#fff;
+    box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
+
+}
+
+
+@keyframes animation-modal-delete-account
+{
+    from {
+        opacity: 0;
+        transform: translateY(-50px);
+    }to{
+        opacity: 1;
+        transform: translateY(0px);
+    }
 }
 
 
