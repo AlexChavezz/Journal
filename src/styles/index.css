@@ -1470,6 +1470,7 @@ height:100vh;
 .container-account .background
 {
     align-items:center;
+    animation: animation-modal-background 200ms linear;
     display:flex;
     justify-content:center;
     background-color: rgba(121, 119, 119, 0.5);
@@ -1546,6 +1547,14 @@ height:100vh;
     }to{
         opacity: 1;
         transform: translateY(0px);
+    }
+}
+@keyframes animation-modal-background
+{
+    from {
+        opacity: 0;
+    }to{
+        opacity: 1;
     }
 }
 

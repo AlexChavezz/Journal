@@ -22,7 +22,6 @@ import { PublicRoutes } from './PublicRoutes';
 export const AppRouter = () => {
     const [isLoggedIn, setLoggedIn] = useState(false);
     const dispatch = useDispatch();
-
     const { loading } = useSelector(state => state.loading)
     useEffect(() => {
         onAuthStateChanged(auth, async ( user ) => {
