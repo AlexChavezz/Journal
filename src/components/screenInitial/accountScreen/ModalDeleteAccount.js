@@ -26,7 +26,7 @@ export const ModalDeleteAccount = ({handleShowModal}) => {
                     Are you sure ?
                 </div>
                 <div className="alert info">
-                    If you click on the button below, your account will be deleted along with all the data.
+                    If you click on the button below, your account will be deleted along with all the data permanently.
                 </div>
                 <button
                     onClick={handleDeleteAccount}
@@ -34,9 +34,10 @@ export const ModalDeleteAccount = ({handleShowModal}) => {
                     Yes i'm sure !
                 </button>
                 <button
+                className="revalidate"
                     onClick={handleReauthorize}
                 >
-                    reauthenticate
+                    validate credentials
                 </button>
             </div>
         </div>

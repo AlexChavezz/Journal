@@ -18,6 +18,9 @@ import { AuthRouter } from './AuthRouter';
 import { InitialScreenRouter } from './InitialScreenRouter';
 import { PrivateRoutes } from './PrivateRoutes';
 import { PublicRoutes } from './PublicRoutes';
+import photoURL from '../pictures/default-user.jpg';
+
+
 
 export const AppRouter = () => {
     const [isLoggedIn, setLoggedIn] = useState(false);
@@ -26,7 +29,7 @@ export const AppRouter = () => {
     useEffect(() => {
         onAuthStateChanged(auth, async ( user ) => {
             if( user?.uid ){
-                dispatch(login(user.uid, user.displayName, user.photoURL));
+                dispatch(login(user.uid, user.displayName, user.photoURL || photoURL));
                 setLoggedIn(true);
                 dispatch(startLodingPage());
                 await dispatch(loadTodosAsync(user.uid));

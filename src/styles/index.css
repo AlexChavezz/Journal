@@ -1362,7 +1362,6 @@ height:100vh;
 }
 .container-account section span
 {
-    color:#f85149;
     font-weight:bold;
     font-size:20px;
     font-family:"Roboto";
@@ -1407,9 +1406,10 @@ height:100vh;
         background-color: #DA3633;
     } 
 }
-.container-account section article img 
+.container-account section article img
 {
     border-radius:50%;
+    cursor: crosshair;
     width:100px;
     height:100px;
 }
@@ -1419,13 +1419,18 @@ height:100vh;
     font-family: "Roboto";
     font-weight:bold;
 }
+.container-account section .caution
+{
+    margin-top:100px;
+}
 .container-account section article form label
 {
     display: flex;
     align-items:center;
+    margin:20px 0px;
 }
 
-.container-account section article form label input[type="text"]
+.container-account section article form label input[type="text"], .file
 {
     display: block;
     width: 100%;
@@ -1439,7 +1444,10 @@ height:100vh;
     border: 1px solid #ced4da;
     border-radius: .25rem;
     margin:0px 40px;
-
+}
+.container-account section article form label .file:disabled
+{
+    background-color: #e9ecef;
 }
 .container-account section article form label  input[type="text"]:disabled
 {
@@ -1449,7 +1457,7 @@ height:100vh;
 .container-account section article form label .btn-primary
 {
     margin:0px;
-    width:150px;
+    min-width:100px;
     align-self:end;
 }
 .container-account section article form label .btn-secoundary
@@ -1531,11 +1539,20 @@ height:100vh;
     width:60%;
     height:30px;
 }
+.container-account .background .delete-account-modal .revalidate
+{
+    margin:10px 0px;
+}
+.container-account .background .delete-account-modal .revalidate:hover
+{
+    background-color: #22B143;
+    border-color:#22B143 ;
+}
 .container-account .background .delete-account-modal button:hover {
-    background-color:#181818;
+    background-color:#FF0000;
     color:#fff;
     box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
-
+    border-color:red;
 }
 
 

@@ -8,8 +8,9 @@ export const AcoountScreen = () => {
 
     const [ modal, setmodal ] = useState(false);
     const { photoURL, name } = useSelector(state => state.auth);
-    const [ { name: nombre }, handleInputChange, setValues ] = useForm({
+    const [ values, handleInputChange, setValues ] = useForm({
         name,
+        file: '',
     });
     const handleShowModal = () => {
         setmodal(!modal);
@@ -20,10 +21,10 @@ export const AcoountScreen = () => {
             <section>
                 <article>
                     <img src={photoURL} alt="photoURL" />
-                    <span>{nombre}</span>
+                    <span>{values.name}</span>
                 </article>
-                <ContentInformation setValues={setValues} name={nombre} handleInputChange={handleInputChange}/>
-                <span>CAUTION: DANGER ZONE</span>
+                <ContentInformation setValues={setValues} values={values} handleInputChange={handleInputChange}/>
+                <span className="caution">CAUTION: DANGER ZONE</span>
                 <article className="danger-zone">
                     <button onClick={handleShowModal} >
                         Delete this account

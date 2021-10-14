@@ -1,13 +1,13 @@
 import React, { createRef, useRef, useState } from 'react'
 import { useDispatch } from 'react-redux';
-import { updateDisplayNameAsync } from '../../../actions/auth';
+import { startUploadNewPhoto, updateDisplayNameAsync } from '../../../actions/auth';
 
-export const ContentInformation = ({setValues, name, handleInputChange}) => {
+export const ContentInformation = ({ setValues, values,  handleInputChange }) => {
 
     const dispatch = useDispatch();
     const [ disabled, setdisabled ] = useState(true);
-   
-    const nameref = useRef(name);
+    const [ inputFileButton ] = useState(true);
+    const nameref = useRef(values.name);
     const ref = createRef();
 
     const handleChangeStatus = () => {
@@ -16,21 +16,33 @@ export const ContentInformation = ({setValues, name, handleInputChange}) => {
     }
     const handleUpdate = (e) => {
         e.preventDefault();
-        if (name === nameref.current) {
+        if (values.name === nameref.current) {
             setdisabled(true);
         } else {
             setdisabled(true);
-            dispatch(updateDisplayNameAsync(name));
-            nameref.current = name;
+            dispatch(updateDisplayNameAsync(values.name));
+            nameref.current = values.name;
         }
     }
     const handleCancel = () => {
         setValues({
+            ...values,
             name: nameref.current,
         });
         setdisabled(true);
     }
-
+    const handleCancelImg = () => {
+        setValues({
+            ...values,
+            file: '',
+        })
+    }
+    const handleFileChange = (e) => {
+        const file = e.target.files[0];
+        if( file ){
+            dispatch(startUploadNewPhoto(file));
+        }
+    }
     return (
         <article>
             <form>
@@ -41,7 +53,7 @@ export const ContentInformation = ({setValues, name, handleInputChange}) => {
                         disabled={disabled}
                         className={disabled ? 'disabled' : 'input'}
                         name="name"
-                        value={name}
+                        value={values.name}
                         onChange={handleInputChange}
                         ref={ref}
                     />
@@ -69,6 +81,29 @@ export const ContentInformation = ({setValues, name, handleInputChange}) => {
                             </>
                         )
                     }
+                </label>
+                <label>
+                    Photo:
+                    <input
+                        type="file"
+                        className="file"
+                        name="file"
+                        value={values.file}
+                        onChange={handleFileChange}
+                        accept=" .jpg, .svg, .png"
+                    />
+                    <button
+                        type="button"
+                        className={values.file === '' ? "btn btn-disabeled" : "btn btn-primary" }
+                        disabled={ values.file !== '' ? !inputFileButton : inputFileButton }
+                    >Update</button>
+                   
+                        <button
+                        onClick={handleCancelImg}
+                        type="button"
+                        className={values.file === '' ? "btn btn-disabeled" : "btn btn-danger" }
+                        disabled={ values.file !== '' ? !inputFileButton : inputFileButton }
+                    >Cancel</button>
                 </label>
             </form>
         </article>

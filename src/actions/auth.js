@@ -10,14 +10,14 @@ import {
     getAuth,
     updatePassword,
     reauthenticateWithPopup,
-    EmailAuthProvider
 } from "firebase/auth";
 import { auth } from "../firebase/firebase_config";
 import { types } from '../types/types';
 import { finishLoading } from "./ui";
 import Swal from 'sweetalert2'
 import { stopLoadingPage } from "./loading";
-
+import photoURL from '../pictures/default-user.jpg';
+import { fileUpload } from "../helpers/fileUpload";
 
 export const registerWithEmailAndPasword = (email, password, name) => {
     return (dispatch) => {
@@ -25,7 +25,7 @@ export const registerWithEmailAndPasword = (email, password, name) => {
             updateProfile(auth.currentUser, {
                 displayName: name,
             }).then(() => {
-                dispatch(login(user.uid, user.displayName))
+                dispatch(login(user.uid, user.displayName, photoURL))
                 dispatch(stopLoadingPage())
             });
         }).catch(res => {
@@ -42,7 +42,7 @@ export const LoginWithEmailAndPassword = (email, password) => {
     return (dispatch) => {
         signInWithEmailAndPassword(auth, email, password)
             .then(({ user }) => {
-                dispatch(login(user.uid, user.displayName))
+                dispatch(login(user.uid, user.displayName, photoURL))
                 dispatch(finishLoading());
                 dispatch(stopLoadingPage());
             })
@@ -117,11 +117,17 @@ export const updateDisplayNameAsync = (newName) => {
 }
 export const deleteAccoout = () => {
     return (dispatch) => {
-
+        const providerCurrent = getProvider();
         const user = auth.currentUser;
         deleteUser(user).then(() => {
+            Swal.fire('success', 'Accoount Eliminated Successfully', 'success');
         }).catch(() => {
-            Swal.fire('error', 'You hav to revalidate your credentials', 'error');
+            if( providerCurrent === "password" ){
+                Swal.fire('error', 'You have to login again', 'error');
+                dispatch(startLogout());
+            }else{
+                Swal.fire('error', 'You hav to revalidate your credentials', 'error');
+            }
         })
     }
 }
@@ -155,11 +161,33 @@ export const reauthenticate = () => {
             })
     }
 }
-
+export const startUploadNewPhoto = (file) => {
+    return async (dispatch, getstate) => {
+        Swal.fire({
+            title: 'Uploading...',
+            text: 'Please wait',
+            allowOutsideClick: false,
+            didOpen: () => {
+                Swal.showLoading();
+            }
+        });
+        const fileurl = await fileUpload( file );
+        updateProfile(auth.currentUser, {
+            photoURL: fileurl,
+        });
+        dispatch(updatephotoURL(fileurl));
+        Swal.close();
+        Swal.fire('success', 'Photo Updated Successfully', 'success');
+    }
+}
 const updateDisplayName = (newName) => ({
     type: types.changeName,
     payload: newName,
 });
+const updatephotoURL = (photoURL) => ({
+    type: types.changephotoURL,
+    payload: photoURL
+})
 
 export const login = (uid, displayName, photoURL) => ({
     type: types.login,

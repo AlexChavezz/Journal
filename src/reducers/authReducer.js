@@ -17,6 +17,11 @@ export const authReducer = (state = {}, action) => {
                 ...state,
                 name: action.payload
             }
+        case types.changephotoURL:
+            return {
+                ...state,
+                photoURL: action.payload
+            }
 
         case types.logout: {
             return {
