@@ -38,9 +38,11 @@ export const ContentInformation = ({ setValues, values, handleInputChange }) => 
     }
 
     const handleFileChange = (e) => {
-        const file = e.target.files[ 0 ];
+        let file = e.target.files[ 0 ];
         if (file) {
-            dispatch(startUploadNewPhoto(file));
+            dispatch(startUploadNewPhoto(file))
+            file = ''
+            
         }
     }
     const handleChangeToTypeText = () => {
@@ -135,18 +137,23 @@ export const ContentInformation = ({ setValues, values, handleInputChange }) => 
                         
                     } */}
                             {
-                                isPassword ?
+                                isPassword && values.password.length > 0 ?
                                     <img
                                         onClick={handleChangeToTypeText}
                                         src={showPasswordLogo}
                                         alt="show-password-logo"
                                     />
                                     :
+                                    <>
+                                    {
+                                        !isPassword &&
                                     <img
                                         onClick={handleChangeToTypeText}
                                         src={hiddenPasswordLogo}
                                         alt="show-password-logo"
                                     />
+                                    }
+                                    </>
                             }
 
                         </label>
