@@ -61,11 +61,12 @@ export const loginWithFacebook = () => {
     return (dispatch) => {
         signInWithRedirect(auth, provider)
             .then((user) => {
-                console.log(user)
                 const { uid, displayName, photoURL } = user;
                 dispatch(login(uid, displayName, photoURL))
             })
-            .catch(error => console.log(error))
+            .catch(error => {
+                Swal.fire('ERROR', 'It was at error try again', 'ERROR')
+            })
     }
 }
 export const loginWithGoogle = () => {
@@ -92,12 +93,11 @@ export const updateUserPassword = (newPassword) => {
     return (dispatch) => {
         const auth = getAuth();
         const user = auth.currentUser;
-        console.log(auth.currentUser)
         updatePassword(user, newPassword).then(() => {
             Swal.fire('success', 'Password Updated Successfully', 'success');
         }).catch((error) => {
             dispatch(startLogout());
-            Swal.fire('error', 'You hav to revalidate your credentials', 'ERROR');
+            Swal.fire('error', 'You have to revalidate your credentials', 'ERROR');
         });
     }
 }

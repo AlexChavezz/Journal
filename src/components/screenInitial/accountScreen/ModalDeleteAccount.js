@@ -1,12 +1,14 @@
 import React from 'react';
 import close_button from '../../../pictures/close_black_24dp.svg';
-import { deleteAccoout, reauthenticate } from '../../../actions/auth';
+import { deleteAccoout, getProvider, reauthenticate } from '../../../actions/auth';
 import { deleteAllTodoAsync } from '../../../actions/todo';
 import { useDispatch } from 'react-redux';
 
 
 export const ModalDeleteAccount = ({handleShowModal}) => {
     const dispatch = useDispatch();
+    const provider = getProvider();
+
     const handleDeleteAccount = () => {
         dispatch(deleteAccoout());
         dispatch(deleteAllTodoAsync());
@@ -33,12 +35,14 @@ export const ModalDeleteAccount = ({handleShowModal}) => {
                 >
                     Yes i'm sure !
                 </button>
+                {
+                    provider !== 'password' && 
                 <button
                 className="revalidate"
                     onClick={handleReauthorize}
                 >
                     validate credentials
-                </button>
+                </button>}
             </div>
         </div>
     );

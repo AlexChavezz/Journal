@@ -48,6 +48,10 @@ export const ContentInformation = ({ setValues, values, handleInputChange }) => 
     }
     const handleUpdatePassword = () => {
         dispatch(updateUserPassword(values.password));
+        setValues({
+            ...values,
+            password:''
+        })
     }
 
 
@@ -103,7 +107,7 @@ export const ContentInformation = ({ setValues, values, handleInputChange }) => 
                 </label>
                 {
                     provider === 'password' &&
-                    <div>
+                    <div className="password-container">
                         <label className="label-password">
                             Password:
                             <input
@@ -146,11 +150,13 @@ export const ContentInformation = ({ setValues, values, handleInputChange }) => 
                             }
 
                         </label>
+                       {
+                        values.password.length >= 6 &&
                         <button
                             type="button"
                             className="btn btn-primary"
                         onClick={handleUpdatePassword}
-                        >Change</button>
+                        >Change</button>}
                     </div>
                 }
             </form>
