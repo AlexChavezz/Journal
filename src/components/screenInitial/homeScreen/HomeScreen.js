@@ -23,7 +23,7 @@ export const HomeScreen = () => {
                     <h3>Whats there to do ?</h3>
                     <div className="items-container">
                         {
-                            items.map(item => item.isEliminated === false && <PendingTodos {...item} key={item.id} />)
+                            items.map(item => <PendingTodos {...item} key={item.id} />)
                         }
                     </div>
                 </section>

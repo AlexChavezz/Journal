@@ -1,14 +1,19 @@
 import React, { createRef, useRef, useState } from 'react'
 import { useDispatch } from 'react-redux';
-import { startUploadNewPhoto, updateDisplayNameAsync } from '../../../actions/auth';
+import { startUploadNewPhoto, updateDisplayNameAsync, updateUserPassword } from '../../../actions/auth';
+import showPasswordLogo from '../../../pictures/visibility_black_24dp.svg';
+import hiddenPasswordLogo from '../../../pictures/visibility_off_black_24dp.svg';
+import { getProvider } from '../../../actions/auth';
 
-export const ContentInformation = ({ setValues, values,  handleInputChange }) => {
+export const ContentInformation = ({ setValues, values, handleInputChange }) => {
 
     const dispatch = useDispatch();
     const [ disabled, setdisabled ] = useState(true);
-    const [ inputFileButton ] = useState(true);
+    const [ isPassword, setisPassword ] = useState(true);
     const nameref = useRef(values.name);
     const ref = createRef();
+
+    const provider = getProvider();
 
     const handleChangeStatus = () => {
         setdisabled(false);
@@ -31,18 +36,21 @@ export const ContentInformation = ({ setValues, values,  handleInputChange }) =>
         });
         setdisabled(true);
     }
-    const handleCancelImg = () => {
-        setValues({
-            ...values,
-            file: '',
-        })
-    }
+
     const handleFileChange = (e) => {
-        const file = e.target.files[0];
-        if( file ){
+        const file = e.target.files[ 0 ];
+        if (file) {
             dispatch(startUploadNewPhoto(file));
         }
     }
+    const handleChangeToTypeText = () => {
+        setisPassword(!isPassword)
+    }
+    const handleUpdatePassword = () => {
+        dispatch(updateUserPassword(values.password));
+    }
+
+
     return (
         <article>
             <form>
@@ -88,23 +96,63 @@ export const ContentInformation = ({ setValues, values,  handleInputChange }) =>
                         type="file"
                         className="file"
                         name="file"
-                        value={values.file}
                         onChange={handleFileChange}
                         accept=" .jpg, .svg, .png"
                     />
-                    <button
-                        type="button"
-                        className={values.file === '' ? "btn btn-disabeled" : "btn btn-primary" }
-                        disabled={ values.file !== '' ? !inputFileButton : inputFileButton }
-                    >Update</button>
-                   
-                        <button
-                        onClick={handleCancelImg}
-                        type="button"
-                        className={values.file === '' ? "btn btn-disabeled" : "btn btn-danger" }
-                        disabled={ values.file !== '' ? !inputFileButton : inputFileButton }
-                    >Cancel</button>
+
                 </label>
+                {
+                    provider === 'password' &&
+                    <div>
+                        <label className="label-password">
+                            Password:
+                            <input
+                                type={isPassword ? "password" : "text"}
+                                className="password"
+                                name="password"
+                                value={values.password}
+                                onChange={handleInputChange}
+                            />
+                            {/* {
+                        values.password.length > 0 && inputType.type === 'password' &&
+                        
+                        <img
+                        onClick={handleChangeToTypeText} 
+                        src={showPasswordLogo} 
+                        alt="show-password-logo" 
+                        />
+                        :
+                        inputType.type === 'pass'&& 
+                        <img 
+                        src={hiddenPasswordLogo} 
+                        alt="show-password-logo" 
+                        />
+                            
+                        
+                    } */}
+                            {
+                                isPassword ?
+                                    <img
+                                        onClick={handleChangeToTypeText}
+                                        src={showPasswordLogo}
+                                        alt="show-password-logo"
+                                    />
+                                    :
+                                    <img
+                                        onClick={handleChangeToTypeText}
+                                        src={hiddenPasswordLogo}
+                                        alt="show-password-logo"
+                                    />
+                            }
+
+                        </label>
+                        <button
+                            type="button"
+                            className="btn btn-primary"
+                        onClick={handleUpdatePassword}
+                        >Change</button>
+                    </div>
+                }
             </form>
         </article>
     )

@@ -76,30 +76,28 @@ export const loginWithGoogle = () => {
                 const { uid, displayName, photoURL } = user;
                 dispatch(login(uid, displayName, photoURL));
             })
-            .catch(error => console.log(error))
+            .catch(error => {
+                Swal.fire('error', 'It was at error try again', 'error');
+            })
     }
 }
 export const startLogout = () => {
     return (dispatch) => {
         signOut(auth).then(() => {
             dispatch(logout());
-        }).catch((e) => {
-            console.log(e);
         })
-
     }
 }
-// This is not ready
-export const updateUserPassword = () => {
+export const updateUserPassword = (newPassword) => {
     return (dispatch) => {
         const auth = getAuth();
         const user = auth.currentUser;
         console.log(auth.currentUser)
-        const newPassword = 'alexiss';
         updatePassword(user, newPassword).then(() => {
             Swal.fire('success', 'Password Updated Successfully', 'success');
         }).catch((error) => {
-            Swal.fire('error', 'It was at error try again', 'ERROR');
+            dispatch(startLogout());
+            Swal.fire('error', 'You hav to revalidate your credentials', 'ERROR');
         });
     }
 }
@@ -131,7 +129,7 @@ export const deleteAccoout = () => {
         })
     }
 }
-const getProvider = () => {
+export const getProvider = () => {
     let provider = '';
     const user = auth.currentUser;
     if (user !== null) {

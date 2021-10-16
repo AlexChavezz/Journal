@@ -10,7 +10,7 @@ export const AcoountScreen = () => {
     const { photoURL, name } = useSelector(state => state.auth);
     const [ values, handleInputChange, setValues ] = useForm({
         name,
-        file: '',
+        password: '',
     });
     const handleShowModal = () => {
         setmodal(!modal);
