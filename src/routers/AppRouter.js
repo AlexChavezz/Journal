@@ -12,7 +12,7 @@ import { login } from '../actions/auth';
 import { startLodingPage, stopLoadingPage } from '../actions/loading';
 import { loadNotesAsync } from '../actions/notes';
 import { loadTodosAsync } from '../actions/todo';
-import { PrivacyPolicy } from '../components/screenInitial/PrivacyPolicy/PrivacyPolicy';
+import { PrivacyPolicyScreen } from '../components/screenInitial/PrivacyPolicy/PrivacyPolicyScreen';
 import { auth } from '../firebase/firebase_config';
 import { AuthRouter } from './AuthRouter';
 import { InitialScreenRouter } from './InitialScreenRouter';
@@ -63,7 +63,7 @@ export const AppRouter = () => {
                     component = { InitialScreenRouter }
                     isAuthenticated = { isLoggedIn }
                     />
-                    <Route exact path="/privacy-policy" component={ PrivacyPolicy } />
+                    <Route path="/privacy-policy" component={ PrivacyPolicyScreen } />
                     <Redirect to="/auth/login"/>
 
                 </Switch>

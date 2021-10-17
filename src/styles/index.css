@@ -1466,6 +1466,7 @@ height:100vh;
     display: block;
     width:30px;
     height: 30px;
+    user-select: none;
 }
 .container-account section article form label .password
 {
@@ -1584,8 +1585,6 @@ height:100vh;
     box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
     border-color:red;
 }
-
-
 @keyframes animation-modal-delete-account
 {
     from {
@@ -1605,11 +1604,129 @@ height:100vh;
     }
 }
 
+/*****
+******
+******
+******
+******
+******
+******
+******
 
+        PRIVACITY POLICY SCREEN
 
+******
+******
+******
+******
+******
+******
+******
+*****/
 
-
-
+header
+{
+    align-items:center;
+    background-color:#181818;
+    height: 10vh;
+    display:flex;
+    justify-content: space-around;
+}
+header h2
+{
+    color:#fff;
+    font-family: "Roboto";
+    font-size:30px;
+    letter-spacing:1px;
+    text-transform:uppercase;
+}
+.caja
+{
+    border:1px solid #d9d9d9;
+    height:30px;
+    overflow: hidden;
+    width: 230px;
+    position:relative;
+}
+select
+{
+    border: none;
+    font-size: 14px;
+    height: 30px;
+    padding: 5px;
+    width: 250px;
+}
+select:focus{ outline: none;}
+ 
+.caja::after
+{
+    content:"\025be";
+    display:table-cell;
+    padding-top:7px;
+    text-align:center;
+    width:30px;
+    height:30px;
+    background-color:#d9d9d9;
+    position:absolute;
+    top:0;
+    right:0px;	
+    pointer-events: none;
+}
+.container-privacity
+{
+    background-color: #ffff;
+    width:1250px;
+    height:calc(90vh - 20px);
+    margin:0px auto;
+    display: flex;
+    margin-top:20px;
+}
+.container-privacity aside 
+{
+    width:30%;
+    text-transform: uppercase;
+}
+.container-privacity aside nav span
+{
+    display: block;
+    margin-bottom:20px;
+    margin-left:10px;
+    font-family:"Roboto";
+    font-weight:bold;
+}
+.container-privacity aside nav a 
+{
+    animation:options-animation 200ms linear;
+    color: black;
+    margin:5px 0px;    
+    display: block;
+    padding:10px;
+    font-family:"Roboto";
+    font-weight:bold;
+    text-decoration:none;
+    animation: all 300ms;   
+    box-shadow: rgba(0, 0, 0, 0.1) 0px 1px 3px 0px, rgba(0, 0, 0, 0.06) 0px 1px 2px 0px;
+}
+.container-privacity section
+{
+    width:100%;
+    font-family:"Roboto";
+    font-weight:bold;
+    box-shadow: rgba(0, 0, 0, 0.1) 0px 1px 3px 0px, rgba(0, 0, 0, 0.06) 0px 1px 2px 0px;
+    padding:40px;
+}
+.container-privacity section h3
+{
+    color:#181818;
+    font-size:20px;
+    text-transform:uppercase;
+    padding:20px;
+}
+.active
+{
+    background-color: rgb(212, 208, 208);
+    border-radius:5px;
+}
 @media( max-width: 1074px)
 {
     .modal-content
