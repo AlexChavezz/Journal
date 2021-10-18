@@ -7,7 +7,6 @@ import { NotesList } from './NotesList';
 
 export const TodoScreen = () => {
 
-
     const [ FormStatus, setShowForm ] = useState(false);
     const dispatch = useDispatch();
     const  { state }  = useSelector(state => state.todos);

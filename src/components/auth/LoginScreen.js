@@ -5,7 +5,6 @@ import { LoginWithEmailAndPassword, loginWithFacebook, loginWithGoogle } from '.
 import { startLodingPage } from '../../actions/loading';
 import { startLoading } from '../../actions/ui';
 import { useForm } from '../../hooks/useForm';
-
 export const LoginScreen = () => {
 
     const [ state, handleInputChange ] = useForm({

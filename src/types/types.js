@@ -5,6 +5,9 @@ export const types = {
     changeName: '[auth] change display name',
     changephotoURL: '[auth] change photo',
 
+    spanish:'[lenguague] spanish',
+    english:'[lenguague] english',
+
     uiSetError:'[ui] set error',
     uiRemoveError: '[ui] remove error',
 
@@ -24,7 +27,7 @@ export const types = {
     updateTodo: '[todo] update note',
     resetTodo: '[todo] reset todo',
     emptyTodos:'[todo] empty todos',
-    
+
     modeEdit: '[modal] mode edit active',
     modeAdd: '[modal] mode add active',
 

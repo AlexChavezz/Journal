@@ -8,8 +8,6 @@ export const HomeScreen = () => {
     const { name } = useSelector(state => state.auth);
     const items = getTodosPendings(todos);
 
-
-
     return (
         <div className="container_home">
             <div className="container_home text">

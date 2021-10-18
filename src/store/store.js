@@ -8,6 +8,7 @@ import { todoReducer } from '../reducers/todoReducer';
 import { modalReducer } from '../reducers/modalReducer';
 import { activeReducer } from '../reducers/activeReducer';
 import { notesReducer } from '../reducers/notesReducer';
+import { lenguagueReducer } from '../reducers/lenguagueReducer';
 const composeEnhancers = (typeof window !== 'undefined' && window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__) || compose;
 
 const reducers = combineReducers({
@@ -19,6 +20,7 @@ const reducers = combineReducers({
     modal: modalReducer,
     active: activeReducer,
     notes: notesReducer,
+    lenguague: lenguagueReducer,
 });
 
 

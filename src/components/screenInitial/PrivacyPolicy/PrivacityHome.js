@@ -1,9 +1,13 @@
-import React from 'react'
+import React from 'react';
+import { useSelector } from 'react-redux';
+import { spanish } from './lenguagues/spanish';
+import { english } from './lenguagues/english';
 
 export const PrivacityHome = () => {
+    const { lenguague }  = useSelector(state => state.lenguague);
     return (
         <article>
-            <h3>Informacion que Journal Recolecta de usted</h3>
+            <h3>{ lenguague === 'english'? (english.h3One) : (spanish.h3One) }</h3>
             <p>Journal recolecta informacion que usted nos proporciono a travez de nuestra aplicacion como:</p>
             <ul>
                 <li>Direccion de correo electronico</li>
