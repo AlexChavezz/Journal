@@ -6,4 +6,10 @@ export const english = {
   linkOne:' Privacy Policy',
   linkTwo:'How to elminate my account',
   h3One: 'Types of information we collected',
+  h3HowTo: 'How to eliminate my account',
+  stepOneTitle: 'Step One:',
+  stepOneDescription:'',
+  stepTwoTitle:'Step Two:',
+  stepTwoDescription:'',
+  deleteAccountWord:'Delete this account',
 }

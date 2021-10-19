@@ -6,4 +6,13 @@ export const spanish = {
   linkOne:'Politicas De Privacidad',
   linkTwo:'Comó eliminar mi cuenta',
   h3One: 'Tipos de informacion que recolectamos',
+  h3HowTo: 'Comó elimnar mi cuenta',
+  stepOneTitle: 'Paso Uno:',
+  stepOneDescription: 'Dirigete a la pestaña Account en el menu dando click en la esquina superior derecha.',
+  stepTwoTitle: 'Paso Dos:',
+  stepTwoDescription:'Ahora lo que tienes que hacer es dirijir tu atencion a la zona inferior de la pagina también llamada Danger Zone. Posteriormente debes hacer click en el buton ',
+  deleteAccountWord:'Delete this account',
+  stepThreeTitle: 'Paso Tres',
+  stepThreeDescription: 'Una vez que des click se abrira un modal. Si ya paso un tiempo prolongado desde que se inicio sesion se debe de confirmar las credenciales dando click en ',
+  deleteAccountWord: 'Validate Credentials',
 }
