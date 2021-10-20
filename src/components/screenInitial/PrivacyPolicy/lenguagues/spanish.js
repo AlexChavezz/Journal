@@ -14,5 +14,5 @@ export const spanish = {
   deleteAccountWord:'Delete this account',
   stepThreeTitle: 'Paso Tres',
   stepThreeDescription: 'Una vez que des click se abrira un modal. Si ya paso un tiempo prolongado desde que se inicio sesion se debe de confirmar las credenciales dando click en ',
-  deleteAccountWord: 'Validate Credentials',
+  deleteAccountWordTwo: 'Validate Credentials',
 }

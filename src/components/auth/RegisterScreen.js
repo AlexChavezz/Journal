@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useRef, useState } from 'react'
 import validator from 'validator';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom'
@@ -6,13 +6,18 @@ import { registerWithEmailAndPasword } from '../../actions/auth';
 import { useForm } from '../../hooks/useForm'
 import { removeError, setError } from '../../actions/ui';
 import { startLodingPage } from '../../actions/loading';
+import ReCAPTCHA from "react-google-recaptcha";
+
+
 export const RegisterScreen = () => {
 
-    const [ state, handleInputChange ] = useForm({
-        name: '',
-        email: '',
-        password: '',
-        passwordConfirm: '',
+  const recaptchaRef =  useRef(null);
+  const [recaptcha, setRecaptcha] = useState(null);
+  const [ state, handleInputChange ] = useForm({
+      name: '',
+      email: '',
+      password: '',
+      passwordConfirm: '',
     });
     const { name, email, password, passwordConfirm } = state;
 
@@ -35,11 +40,18 @@ export const RegisterScreen = () => {
         } else if (password !== passwordConfirm || password.length < 6) {
             dispatch(setError('Password is Required'));
             return false;
+        }else if(!recaptcha){
+          dispatch(setError('Recaptcha is required'));
+          return false;
         }
         dispatch(removeError());
         return true
     }
 
+
+    const onChangeRecaptcha = () => {
+        setRecaptcha(recaptchaRef.current.getValue());
+    }
     return (
         <div className="auth">
             <div className="container">
@@ -57,9 +69,9 @@ export const RegisterScreen = () => {
                         onChange={handleInputChange}
                     />
                     {
-                        error && error === "Name is Required" && 
+                        error && error === "Name is Required" &&
                         <div className="alert">
-                            <span>Should have a minimum of 3 characters </span>
+                            <span>Should have a minimum of 3 characters</span>
                         </div>
                     }
                     <input
@@ -71,7 +83,7 @@ export const RegisterScreen = () => {
                         onChange={handleInputChange}
                     />
                      {
-                        error && error === "Email is Required" &&  
+                        error && error === "Email is Required" &&
                         <div className="alert">
                             <span>Should contains something like '@email.com'</span>
                         </div>
@@ -91,12 +103,25 @@ export const RegisterScreen = () => {
                         onChange={handleInputChange}
                     />
                    {
-                        error && error === "Password is Required" &&  
+                        error && error === "Password is Required" &&
                         <div className="alert">
-                        <span>Passwords should be the same and have a minimum of 6 characters</span>
+                          <span>Passwords should be the same and have a minimum of 6 characters</span>
                         </div>
 
                     }
+                    <div className="recaptcha-container">
+                      <ReCAPTCHA
+                        ref={recaptchaRef}
+                        sitekey="6Le4VOAcAAAAAJpo89xEhfh1Z3igFCrj0JzUbAvQ"
+                        onChange={onChangeRecaptcha}
+                    />
+                    {
+                      error && error === "Recaptcha is required" &&
+                      <div className="alert">
+                        <span>Are you a robot?</span>
+                      </div>
+                    }
+                    </div>
                     <input
                         type="submit"
                         className="btn btn-primary"
