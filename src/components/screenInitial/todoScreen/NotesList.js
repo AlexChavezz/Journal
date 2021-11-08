@@ -3,7 +3,7 @@ import { useDispatch } from 'react-redux';
 import { showModalEdit } from '../../../actions/modal';
 import { activeNote, removeTodoAsync, updateNotesAsync } from '../../../actions/todo';
 
-export const NotesList = ({ title, description, done, id, isEliminated, setShowForm }) => {
+export const NotesList = React.memo(({ title, description, done, id, isEliminated, setShowForm }) => {
     const dispatch = useDispatch();
     const [isDone, setDone] = useState(done);
 
@@ -14,8 +14,8 @@ export const NotesList = ({ title, description, done, id, isEliminated, setShowF
     const handleUpdate = () => {
         setShowForm(true);
         dispatch(activeNote({
-            titleActive:title, 
-            descriptionActive: description, 
+            titleActive:title,
+            descriptionActive: description,
             idActive: id,
         }));
         dispatch(showModalEdit());
@@ -29,8 +29,8 @@ export const NotesList = ({ title, description, done, id, isEliminated, setShowF
             isEliminated,
         }
         dispatch(updateNotesAsync(id, noteToUpdate));
-    }  
- 
+    }
+
     return (
         <tr>
             <td>
@@ -66,4 +66,4 @@ export const NotesList = ({ title, description, done, id, isEliminated, setShowF
             </td>
         </tr>
     )
-}
+})

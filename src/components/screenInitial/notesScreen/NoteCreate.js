@@ -2,12 +2,13 @@ import React, { useState } from 'react'
 import { ActiveNote } from './ActiveNote';
 
 export const NoteCreate = (props) => {
-
+    console.log('render');
     const [state, setstate] = useState(false);
 
     const handleActive = () => {
         setstate(true);
     }
+
     return (
         <>
             <div
@@ -20,7 +21,6 @@ export const NoteCreate = (props) => {
                 state &&
                 <ActiveNote {...props} setstate={setstate}/>
             }
-       
         </>
     )
 }

@@ -1,6 +1,6 @@
 import React from 'react';
 import { useSelector, useDispatch } from 'react-redux'
-import { Switch, NavLink, Route } from 'react-router-dom';
+import { Switch, NavLink, Route, Link } from 'react-router-dom';
 import { DeleteAccount } from './DeleteAccount';
 import { PrivacityHome } from './PrivacityHome';
 import { english } from './lenguagues/english';
@@ -50,6 +50,11 @@ export const PrivacyPolicyScreen = () => {
             </header>
             <div className="container-privacity">
                 <aside>
+                    <div className="go-home">
+                      <Link to="/journal">
+                        <img src="./logo.png" alt="juornal-logo" title="JOUNAL" />
+                      </Link>
+                    </div>
                     <nav>
                         <span>{ lenguague === 'spanish'? spanish.span : english.span}</span><br />
                         <NavLink exact to="/privacy-policy/" activeClassName="active">{ lenguague === 'spanish'? spanish.linkOne : english.linkOne }</NavLink> <br />
@@ -63,7 +68,6 @@ export const PrivacyPolicyScreen = () => {
                     </Switch>
                 </section>
             </div>
-
         </>
     )
 }

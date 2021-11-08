@@ -1,4 +1,4 @@
-import React from 'react'
+import React from 'react';
 import { useDispatch } from 'react-redux';
 import { activeNote, removeNoteAsync } from '../../../actions/notes';
 
@@ -39,13 +39,13 @@ export const ActiveNote = (props) => {
                     <p className="parrafo">{props.note}</p>
                 </div>
                 <div className="buttons">
-                    <button 
+                    <button
                     className="remove-note"
                     onClick={ handleRemove }
                     >
                         DELETE
                     </button>
-                    <button 
+                    <button
                     className="update-note"
                     onClick={ handleUpdate }
                     >

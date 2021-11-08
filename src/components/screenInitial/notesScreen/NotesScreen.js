@@ -3,7 +3,7 @@ import { useSelector } from 'react-redux';
 import { Modal } from './Modal';
 import { NoteCreate } from './NoteCreate';
 
-export const NotesScreen = () => {
+export const NotesScreen = React.memo(() => {
 
     const [status, setstatus] = useState(false);
 
@@ -11,14 +11,14 @@ export const NotesScreen = () => {
 
     const handleChangeState = () => {
         setstatus(!status);
-    } 
+    }
 
     return (
         <div className="journal_container notes">
 
             <h2>NOTES</h2>
             <div className="flex">
-            <div 
+            <div
             className="target"
             onClick={ handleChangeState }
             >
@@ -30,12 +30,12 @@ export const NotesScreen = () => {
                 state.map( note => note.isEliminated === false && <NoteCreate key={ note.id }{...note} handleChangeState={handleChangeState}/>)
             }
             </div>
-           
+
 
             {
-                status && 
+                status &&
                 <Modal handleChangeState={handleChangeState}/>
             }
         </div>
     )
-}
+});

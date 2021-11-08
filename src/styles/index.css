@@ -1247,6 +1247,11 @@ height:100vh;
     height:400px;
     width:300px;
 }
+.target p
+{
+  white-space: pre;
+  overflow: hidden;
+}
 .notes_container .target_notes
 {
     animation: notesandtodos-animation 150ms linear;
@@ -1259,6 +1264,7 @@ height:100vh;
 .notes_container .target_notes p
 {
     margin-top:20px;
+    white-space: pre;
 }
 .buttons
 {
@@ -1696,6 +1702,21 @@ select:focus
     width:30%;
     text-transform: uppercase;
 }
+.container-privacity aside .go-home
+{
+    margin-bottom:60px;
+}
+.container-privacity aside img
+{
+    width:5rem;
+    display: block;
+    margin:0px auto;
+    transition: all .1s ease-in;
+}
+.container-privacity aside img:hover
+{
+  transform: scale(1.2);
+}
 .container-privacity aside nav span
 {
     display: block;
@@ -1728,14 +1749,11 @@ select:focus
 }
 .container-privacity section article .img-container
 {
-  width:100%;
+  width:70%;
   height:100%;
-  box-shadow: 1px 1px 2px black;
+  margin:0px auto;
+  padding:2px;
 }
-
-
-
-
 .container-privacity section::-webkit-scrollbar
 {
     -webkit-appearance: none;
