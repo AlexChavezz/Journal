@@ -27,7 +27,7 @@ export const NotesScreen = React.memo(() => {
                 </svg>
             </div>
             {
-                state.map( note => note.isEliminated === false && <NoteCreate key={ note.id }{...note} handleChangeState={handleChangeState}/>)
+                state.map( note => note.isEliminated === false && <NoteCreate key={ note.id }{...note} handleChangeState={handleChangeState} />)
             }
             </div>
 

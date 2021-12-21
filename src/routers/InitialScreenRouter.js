@@ -1,100 +1,41 @@
-import React, { createRef, useState } from 'react';
-import { useSelector } from 'react-redux';
-import { NavLink, Redirect, Route, Switch } from 'react-router-dom';
+import React from 'react';
+import { Redirect, Route, Switch } from 'react-router-dom';
 import { AcoountScreen } from '../components/screenInitial/accountScreen/AcoountScreen';
 import { HomeScreen } from '../components/screenInitial/homeScreen/HomeScreen';
-import { ModalOptions } from '../components/screenInitial/ModalOptions';
 import { NotesScreen } from '../components/screenInitial/notesScreen/NotesScreen';
 import { RecycleScreenNotes } from '../components/screenInitial/recycleScreen/notesRecycle/RecycleScreenNotes';
 import { RecycleScreen } from '../components/screenInitial/recycleScreen/RecycleScreen';
 import { RecycleScreenTodos } from '../components/screenInitial/recycleScreen/todosRecycle/RecycleScreenTodos';
 import { TodoScreen } from '../components/screenInitial/todoScreen/TodoScreen';
-import manageAccoutLogo from '../pictures/manage_accounts_white_24dp.svg';
+import { BarNav } from '../components/screenInitial/UI/BarNav';
+import { Header } from '../components/screenInitial/UI/Header';
+
+
 export const InitialScreenRouter = () => {
 
-    const { name } = useSelector(state => state.auth);
-    const [ optionsModal, setoptionsModal ] = useState(false);
+    //Responsive 
 
-    const ref = createRef();
-    const handleShowAside = () => {
-        const status = ref.current.style.display;
-        if (status !== 'block') {
-            ref.current.style.display = 'block';
-        } else if (status === 'block') {
-            ref.current.style.display = 'none';
-        }
-    }
-    // const handleUpdatePassword = () => {
-    //     dispatch(updateUserPassword());
+    // const ref = createRef();
+
+    // const handleShowAside = () => {
+    //     const status = ref.current.style.display;
+    //     if (status !== 'block') {
+    //         ref.current.style.display = 'block';
+    //     } else if (status === 'block') {
+    //         ref.current.style.display = 'none';
+    //     }
     // }
-
-    const handleChangeStatus = () => {
-        setoptionsModal(!optionsModal);
-    }
 
     return (
         <div 
         className="journal"
         >
 
-            <header className="journal-header">
-                <div className="menu"
-                    onClick={handleShowAside}
-                >
-                    <svg xmlns="http://www.w3.org/2000/svg" width="35" height="35" fill="white" className="bi bi-list" viewBox="0 0 16 16">
-                        <path fillRule="evenodd" d="M2.5 12a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5z" />
-                    </svg>
-                </div>
-                <div className="date">
-                    <p className="date"> Today's : {new Date().getMonth() + 1} / {new Date().getDate()} / {new Date().getFullYear()} </p>
-                </div>
-                <h1>
-                    JOURNAL
-                </h1>
-                <div className="user dropdown">
-                    <span
-                        className="displayName"
-                        onClick={handleChangeStatus}
-                    >
-                        <span> {name}</span>
+            <Header />
 
-                        <img src={manageAccoutLogo} alt="accountLogo" />
-                    </span>
-
-                    
-                </div>
-                {
-                    optionsModal &&  <ModalOptions handleChangeStatus={handleChangeStatus}/>
-                }
-
-            </header>
             <div className="flex">
-                <aside
-                    ref={ref}
-                >
-                    <NavLink activeClassName="active" exact to="/journal" className="flex">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="white" className="bi bi-house-fill" viewBox="0 0 16 16">
-                            <path d="m8 3.293 6 6V13.5a1.5 1.5 0 0 1-1.5 1.5h-9A1.5 1.5 0 0 1 2 13.5V9.293l6-6zm5-.793V6l-2-2V2.5a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5z" />
-                            <path d="M7.293 1.5a1 1 0 0 1 1.414 0l6.647 6.646a.5.5 0 0 1-.708.708L8 2.207 1.354 8.854a.5.5 0 1 1-.708-.708L7.293 1.5z" />
-                        </svg>
-                    </NavLink>
-                    <NavLink activeClassName="active" to="/journal/toDo" className="flex">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="white" className="bi bi-check2-square" viewBox="0 0 16 16">
-                            <path d="M3 14.5A1.5 1.5 0 0 1 1.5 13V3A1.5 1.5 0 0 1 3 1.5h8a.5.5 0 0 1 0 1H3a.5.5 0 0 0-.5.5v10a.5.5 0 0 0 .5.5h10a.5.5 0 0 0 .5-.5V8a.5.5 0 0 1 1 0v5a1.5 1.5 0 0 1-1.5 1.5H3z" />
-                            <path d="m8.354 10.354 7-7a.5.5 0 0 0-.708-.708L8 9.293 5.354 6.646a.5.5 0 1 0-.708.708l3 3a.5.5 0 0 0 .708 0z" />
-                        </svg>
-                    </NavLink>
-                    <NavLink activeClassName="active" to="/journal/notes" className="flex">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="white" className="bi bi-book" viewBox="0 0 16 16">
-                            <path d="M1 2.828c.885-.37 2.154-.769 3.388-.893 1.33-.134 2.458.063 3.112.752v9.746c-.935-.53-2.12-.603-3.213-.493-1.18.12-2.37.461-3.287.811V2.828zm7.5-.141c.654-.689 1.782-.886 3.112-.752 1.234.124 2.503.523 3.388.893v9.923c-.918-.35-2.107-.692-3.287-.81-1.094-.111-2.278-.039-3.213.492V2.687zM8 1.783C7.015.936 5.587.81 4.287.94c-1.514.153-3.042.672-3.994 1.105A.5.5 0 0 0 0 2.5v11a.5.5 0 0 0 .707.455c.882-.4 2.303-.881 3.68-1.02 1.409-.142 2.59.087 3.223.877a.5.5 0 0 0 .78 0c.633-.79 1.814-1.019 3.222-.877 1.378.139 2.8.62 3.681 1.02A.5.5 0 0 0 16 13.5v-11a.5.5 0 0 0-.293-.455c-.952-.433-2.48-.952-3.994-1.105C10.413.809 8.985.936 8 1.783z" />
-                        </svg>
-                    </NavLink>
-                    <NavLink activeClassName="active" to="/journal/paperbin" className="flex">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="white" className="bi bi-recycle" viewBox="0 0 16 16">
-                            <path d="M9.302 1.256a1.5 1.5 0 0 0-2.604 0l-1.704 2.98a.5.5 0 0 0 .869.497l1.703-2.981a.5.5 0 0 1 .868 0l2.54 4.444-1.256-.337a.5.5 0 1 0-.26.966l2.415.647a.5.5 0 0 0 .613-.353l.647-2.415a.5.5 0 1 0-.966-.259l-.333 1.242-2.532-4.431zM2.973 7.773l-1.255.337a.5.5 0 1 1-.26-.966l2.416-.647a.5.5 0 0 1 .612.353l.647 2.415a.5.5 0 0 1-.966.259l-.333-1.242-2.545 4.454a.5.5 0 0 0 .434.748H5a.5.5 0 0 1 0 1H1.723A1.5 1.5 0 0 1 .421 12.24l2.552-4.467zm10.89 1.463a.5.5 0 1 0-.868.496l1.716 3.004a.5.5 0 0 1-.434.748h-5.57l.647-.646a.5.5 0 1 0-.708-.707l-1.5 1.5a.498.498 0 0 0 0 .707l1.5 1.5a.5.5 0 1 0 .708-.707l-.647-.647h5.57a1.5 1.5 0 0 0 1.302-2.244l-1.716-3.004z" />
-                        </svg>
-                    </NavLink>
-                </aside>
+                
+                <BarNav />
 
                 <Switch>
                     <Route exact path="/journal" component={HomeScreen} />

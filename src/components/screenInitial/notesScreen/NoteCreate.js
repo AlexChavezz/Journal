@@ -2,7 +2,6 @@ import React, { useState } from 'react'
 import { ActiveNote } from './ActiveNote';
 
 export const NoteCreate = (props) => {
-    console.log('render');
     const [state, setstate] = useState(false);
 
     const handleActive = () => {
@@ -12,7 +11,7 @@ export const NoteCreate = (props) => {
     return (
         <>
             <div
-                className="target animate__animated animate__fadeInDown"
+                className="target"
                 onClick={handleActive}
             >
                 <p>{props.note}</p>
