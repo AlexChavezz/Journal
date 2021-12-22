@@ -2,7 +2,7 @@ import React from 'react'
 import { useDispatch } from 'react-redux';
 import { deleteTodoAsync, resetTodoAsync } from '../../../../actions/todo';
 
-export const Rendertodo = ({ title,description, id }) => {
+export const Rendertodo = React.memo(({ title, description, id, isEliminated, note }) => {
 
     const dispatch = useDispatch();
 
@@ -12,25 +12,42 @@ export const Rendertodo = ({ title,description, id }) => {
     const handleReset = () => {
         dispatch(resetTodoAsync(id));
     }
-
     return (
         <div className="todos_eliminateds">
-            <span>
-                {title}
-            </span>
-            <p>
-                {description}
+            {
+                title && description ?
+                    <>
+                        <span>
+                            {title}
+                        </span>
+                        <p>
+                            {description}
+                        </p>
+                    </>
+                    :
+                    <>
+                        <p>{note}</p>
+                    </>
+            }
+            <p
+                className={isEliminated ? "eliminated" : "noEliminated"}
+            >
+                {isEliminated ? "Eliminated" : "Saved"}
             </p>
-            <div className="buttons">
-                <button 
-                className="reset"
-                onClick={handleReset}
-                >Reset</button>
-                <button 
-                className="delete_perman"
-                onClick={handeldelete}
-                >Permanently Delete</button>
-            </div>
+            {
+                isEliminated && title && description &&
+                <div className="buttons">
+                    <button
+                        className="reset"
+                        onClick={handleReset}
+                    >Reset</button>
+                    <button
+                        className="delete_perman"
+                        onClick={handeldelete}
+                    >Permanently Delete</button>
+                </div>
+            }
+
         </div>
     )
-}
+})

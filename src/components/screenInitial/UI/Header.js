@@ -16,19 +16,19 @@ export const Header = () => {
     const handleChangeStatus = () => {
         setoptionsModal(!optionsModal);
     }
-    const [{ search }, handleInputChange, ,reset] = useForm({
-        search: '', 
+    const [{ keyWord }, handleInputChange, ,reset] = useForm({
+        keyWord: '', 
     });
 
     useEffect(() => {
 
-        if (search.trim().length > 0) {
+        if (keyWord.trim().length > 0) {
             setIsSearching(true);
         } else {
             setIsSearching(false);
         }
 
-    }, [search])
+    }, [keyWord])
 
     return (
         <header className="journal-header">
@@ -42,7 +42,7 @@ export const Header = () => {
             {/* Component to search anything */}
             {
                 isSearching &&
-                <SearchResults search={search} />
+                <SearchResults keyWord={keyWord} />
             }
 
             <div className="search">
@@ -50,13 +50,13 @@ export const Header = () => {
                 <input
                     type="text"
                     placeholder="Type to search"
-                    name="search"
-                    value={search}
+                    name="keyWord"
+                    value={keyWord}
                     onChange={handleInputChange}
                     autoComplete="off"
                 />
                 {
-                    search.trim().length > 0 &&
+                    keyWord.trim().length > 0 &&
                     <img
                         src={close}
                         alt="close"

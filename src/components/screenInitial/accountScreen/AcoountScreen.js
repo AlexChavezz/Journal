@@ -8,7 +8,7 @@ export const AcoountScreen = () => {
 
     const [ modal, setmodal ] = useState(false);
     const { photoURL, name } = useSelector(state => state.auth);
-    const [ values, handleInputChange, setValues ] = useForm({
+    const [ values, handleInputChange, setValues, reset ] = useForm({
         name,
         password: '',
     });
@@ -23,7 +23,12 @@ export const AcoountScreen = () => {
                     <img src={photoURL} alt="photoURL" />
                     <span>{values.name}</span>
                 </article>
-                <ContentInformation setValues={setValues} values={values} handleInputChange={handleInputChange}/>
+                <ContentInformation
+                setValues={setValues} 
+                values={values} 
+                handleInputChange={handleInputChange}
+                reset={reset}
+                 />
                 <span className="caution">CAUTION: DANGER ZONE</span>
                 <article className="danger-zone">
                     <button onClick={handleShowModal} >

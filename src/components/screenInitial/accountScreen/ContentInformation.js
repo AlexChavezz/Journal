@@ -1,23 +1,22 @@
-import React, { createRef, useRef, useState } from 'react'
+import React, { useRef, useState } from 'react'
 import { useDispatch } from 'react-redux';
 import { startUploadNewPhoto, updateDisplayNameAsync, updateUserPassword } from '../../../actions/auth';
 import showPasswordLogo from '../../../pictures/visibility_black_24dp.svg';
 import hiddenPasswordLogo from '../../../pictures/visibility_off_black_24dp.svg';
 import { getProvider } from '../../../actions/auth';
 
-export const ContentInformation = ({ setValues, values, handleInputChange }) => {
+export const ContentInformation = ({ setValues, values, handleInputChange, reset }) => {
 
     const dispatch = useDispatch();
     const [ disabled, setdisabled ] = useState(true);
     const [ isPassword, setisPassword ] = useState(true);
     const nameref = useRef(values.name);
-    const ref = createRef();
 
     const provider = getProvider();
 
     const handleChangeStatus = () => {
         setdisabled(false);
-        ref.current.focus();
+        nameref.current.focus();
     }
     const handleUpdate = (e) => {
         e.preventDefault();
@@ -30,10 +29,7 @@ export const ContentInformation = ({ setValues, values, handleInputChange }) => 
         }
     }
     const handleCancel = () => {
-        setValues({
-            ...values,
-            name: nameref.current,
-        });
+        reset();
         setdisabled(true);
     }
 
@@ -42,7 +38,6 @@ export const ContentInformation = ({ setValues, values, handleInputChange }) => 
         if (file) {
             dispatch(startUploadNewPhoto(file))
             file = ''
-            
         }
     }
     const handleChangeToTypeText = () => {
@@ -56,7 +51,6 @@ export const ContentInformation = ({ setValues, values, handleInputChange }) => 
         })
     }
 
-
     return (
         <article>
             <form>
@@ -69,7 +63,7 @@ export const ContentInformation = ({ setValues, values, handleInputChange }) => 
                         name="name"
                         value={values.name}
                         onChange={handleInputChange}
-                        ref={ref}
+                        ref={nameref}
                     />
                     {
                         disabled ? (
