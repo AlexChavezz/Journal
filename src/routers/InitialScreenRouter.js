@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Redirect, Route, Switch } from 'react-router-dom';
 import { AcoountScreen } from '../components/screenInitial/accountScreen/AcoountScreen';
 import { HomeScreen } from '../components/screenInitial/homeScreen/HomeScreen';
@@ -9,33 +9,36 @@ import { RecycleScreenTodos } from '../components/screenInitial/recycleScreen/to
 import { TodoScreen } from '../components/screenInitial/todoScreen/TodoScreen';
 import { BarNav } from '../components/screenInitial/UI/BarNav';
 import { Header } from '../components/screenInitial/UI/Header';
-
+import { ToggleSideBar } from '../components/screenInitial/UI/ToggleSideBar';
 
 export const InitialScreenRouter = () => {
 
-    //Responsive 
+    const [sideBar, setSideBar] = useState(false);
 
-    // const ref = createRef();
+    const toggleSideBar = () => {
+        setSideBar(!sideBar);
+    }
 
-    // const handleShowAside = () => {
-    //     const status = ref.current.style.display;
-    //     if (status !== 'block') {
-    //         ref.current.style.display = 'block';
-    //     } else if (status === 'block') {
-    //         ref.current.style.display = 'none';
-    //     }
-    // }
 
     return (
-        <div 
-        className="journal"
+        <div
+            className="journal"
         >
 
             <Header />
 
             <div className="flex">
-                
-                <BarNav />
+                {
+                   
+                    <BarNav
+                        sideBar={sideBar}
+                        toggleSideBar={toggleSideBar}
+                        setSideBar={setSideBar}
+                    />
+                }
+
+                <ToggleSideBar toggleSideBar={toggleSideBar} sideBar={sideBar} />
+
 
                 <Switch>
                     <Route exact path="/journal" component={HomeScreen} />

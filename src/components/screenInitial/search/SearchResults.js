@@ -11,7 +11,7 @@ export const SearchResults = ({ keyWord }) => {
     const [todosFinded, setTodosFinded] = useState([]);
     const { state: notes } = useSelector(state => state.notes)
     const [notesFinded, setNotesFinded] = useState([]);
-    
+
     useEffect(() => {
         const todosFinded = findTodos(todos, keyWord);
         setTodosFinded(todosFinded);

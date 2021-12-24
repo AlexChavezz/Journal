@@ -1,17 +1,36 @@
-import React from 'react';
+import React, { useEffect, useLayoutEffect, useRef } from 'react';
 import { NavLink } from 'react-router-dom';
 import logo from '../../../pictures/logo.png';
 import homeImg from '../../../pictures/home_white_24dp.svg';
 import todoImg from '../../../pictures/checklist_white_24dp.svg';
 import notesImg from '../../../pictures/description_white_24dp.svg';
 import recicleImg from '../../../pictures/recycling_white_24dp.svg';
+import { gsap } from 'gsap';
 
+export const BarNav = React.memo(({ sideBar, toggleSideBar, setSideBar }) => {
 
-export const BarNav = () => {
+    const ref = useRef(null);
+
+    useEffect(() => {
+        setSideBar(false);
+    }, [setSideBar])
+
+    useLayoutEffect(() => {
+
+        if ( !ref.current ) return;
+
+        if (sideBar) {
+            gsap.from(ref.current, { x: -200, duration: .2, ease: 'ease' })
+            gsap.to(ref.current, { x: 0, duration: .2, ease: 'ease' })
+        } else {
+            gsap.from(ref.current, { x: 0, duration: .2, ease: 'ease' })
+            gsap.to(ref.current, { x: -200, duration: .2, ease: 'ease' })
+        }
+    }, [sideBar, toggleSideBar])
 
     return (
         <aside
-            // ref={ref}
+            ref={ref}
         >
             <section>
                 <article className="logo-barnav">
@@ -43,4 +62,4 @@ export const BarNav = () => {
             </section>
         </aside>
     );
-}
+})
