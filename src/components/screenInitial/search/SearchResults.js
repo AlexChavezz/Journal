@@ -25,14 +25,14 @@ export const SearchResults = ({ keyWord }) => {
                 {
                     todosFinded.length > 0 || notesFinded.length > 0 ?
                         <>
-                            <article className="todos-results">
                                 <h3>Todos</h3>
+                            <article className="todos-results">
                                 {
                                     todosFinded.map(todo => <Rendertodo {...todo} key={todo.id} />)
                                 }
                             </article>
-                            <article className="notes-results">
                                 <h3>Notes</h3>
+                            <article className="notes-results">
                                 {
                                     notesFinded.map(note => <Rendertodo {...note} key={note.id} />)
                                 }

@@ -242,7 +242,6 @@
 .journal_container {
     width: 1200px;
     margin: 0px auto;
-    box-shadow: rgba(17, 17, 26, 0.05) 0px 1px 0px, rgba(17, 17, 26, 0.1) 0px 0px 8px;
     height: calc(100vh - 50px);
     overflow: auto;
 }
@@ -338,7 +337,7 @@
 }
 
 .journal-header .results .todos-results, .notes-results {
-    width: 1250px;
+    width: 80%;
     height: auto;
 }
 
@@ -420,7 +419,7 @@
     width: 200px;
     height: calc(100vh - 50px);
     background-color: #202020;
-
+    position:fixed;
 }
 
 .journal aside section .logo-barnav {
@@ -461,7 +460,7 @@
     padding-bottom: 6px;
 }
 
-.journal aside section article nav ul li a, p {
+.journal aside section article nav ul li a {
     text-decoration: none;
     color: #fff;
     margin-left: 10px;
@@ -482,15 +481,17 @@
 */
 
 .journal .flex .toggle-sidebar {
+    background: #181818;
     border-radius:7px;
+    color:white;
     cursor: pointer;
     display: flex;
-    position:absolute;
+    position:fixed;
     justify-content: center;
     align-items: center;
     bottom:20px;
     left:200px;
-    width: 150px;
+    width: 70px;
     height: 50px;
     font-family:"Roboto";
     font-weight:bold;
@@ -498,8 +499,8 @@
     transition: all 100ms ease-in;
 }
 .journal .flex .toggle-sidebar:hover {
-    background: #181818;
-    color:white;
+    background: #fff;
+    color:#181818;
 }
 .journal .flex .false {
     left:10px;
@@ -533,16 +534,80 @@
 }
 
 .container_home {
-    width: 90%;
+    width: 95%;
     margin: 0px auto;
     height: calc(100vh - 50px);
-    box-shadow: rgba(17, 17, 26, 0.05) 0px 1px 0px, rgba(17, 17, 26, 0.1) 0px 0px 8px;
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
+}
+.container_home .banner {
+    animation: animation-banner 200ms;
+    align-items: center;
+    background-color:#94a1b2;
+    border-bottom-left-radius:20px ;
+    border-bottom-right-radius:20px ;
+    color:#181818;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    height: 30vh;
+    /* border-bottom: 1px solid #ccc; */
+    font-family:sans-serif;
+    justify-content: space-evenly;
+}
+.container_home .banner h3 {
+    font-size: 1.8rem;
+}
+.container_home .banner h3 b {
+    color: gold;
+}
+.container_home .banner p {
+    font-size:20px;
+    text-transform: uppercase;
+}
+.container_home .description {
+    margin-top:50px;
+    justify-content: space-evenly;
+    font-family: "Roboto";
+    font-weight: bold;
+    display: flex;
+    min-height:30vh;
+    width:100%;
+}
+.container_home .description article {
+    display: flex;
+    flex-direction:column;
+    width:40%;
+    height: 100%;
+    box-shadow: rgba(17, 12, 46, 0.15) 0px 48px 100px 0px;
+    padding: 50px;
+}
+.container_home .description article h3 {
+    font-size:30px;
+}
+.container_home .description article p {
+    font-size:16px;
+    margin-top:50px;
+    line-height:30px;
+}
+@keyframes animation-banner-title {
+    from{
+        transform: translateY(-200px);
+    }to{
+        transform: translateY(0px);
+    }
 }
 
-.text {
+@keyframes animation-banner {
+    from {
+        display: none;
+        opacity: 0;
+    }to {
+        display: flex;
+        opacity: 1;
+    }
+}
+/* .text {
     box-shadow: none;
     display: block;
 }
@@ -597,7 +662,7 @@
     flex-direction: column;
     min-height: 200px;
     width: 500px;
-}
+} */
 
 @keyframes info-modal-animation {
     from {
@@ -1954,6 +2019,9 @@ select:focus {
 }
 
 @media(max-width: 1074px) {
+    .container_home .description article {
+        height: 300px;
+    }
     .modal-content {
         width: 80%;
     }
@@ -1966,6 +2034,12 @@ select:focus {
 }
 
 @media(max-width: 893px) {
+    .journal-header .results .todos-results, .notes-results {
+        overflow: auto;
+    }
+    .todos_eliminateds {
+        width: 800px;
+    }
     .container_todos {
         width: 90vw;
         overflow: auto;
@@ -1978,14 +2052,26 @@ select:focus {
 }
 
 @media(max-width: 760px) {
+    .container_home .description article {
+        height:350px;
+    }
     .notes_container {
         justify-content: center;
     }
 }
 
 @media(max-width: 680px) {
+    .container_home .description {
+        flex-direction: column;
+        align-items: center;
+        width:100%;
+    } 
+    .container_home .description article {
+        width:90%;
+        margin-bottom:40px;
+    }
     .journal-header .search {
-        position: static;
+        position: relative;
     }
 
     .journal-header {
@@ -2049,14 +2135,4 @@ select:focus {
         width: 90%;
     }
 
-}
-
-@keyframes aside {
-    from {
-        transform: translateX(-100%);
-    }
-
-    to {
-        transform: translateX(0%);
-    }
 }

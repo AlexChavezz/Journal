@@ -1,4 +1,4 @@
-import React, { useEffect, useLayoutEffect, useRef } from 'react';
+import React, {  useLayoutEffect, useRef } from 'react';
 import { NavLink } from 'react-router-dom';
 import logo from '../../../pictures/logo.png';
 import homeImg from '../../../pictures/home_white_24dp.svg';
@@ -11,9 +11,9 @@ export const BarNav = React.memo(({ sideBar, toggleSideBar, setSideBar }) => {
 
     const ref = useRef(null);
 
-    useEffect(() => {
-        setSideBar(false);
-    }, [setSideBar])
+    // useEffect(() => {
+    //     setSideBar(false);
+    // }, [setSideBar])
 
     useLayoutEffect(() => {
 
@@ -23,11 +23,9 @@ export const BarNav = React.memo(({ sideBar, toggleSideBar, setSideBar }) => {
             gsap.from(ref.current, { x: -200, duration: .2, ease: 'ease' })
             gsap.to(ref.current, { x: 0, duration: .2, ease: 'ease' })
         } else {
-            gsap.from(ref.current, { x: 0, duration: .2, ease: 'ease' })
-            gsap.to(ref.current, { x: -200, duration: .2, ease: 'ease' })
+            toggleSideBar();
         }
     }, [sideBar, toggleSideBar])
-
     return (
         <aside
             ref={ref}

@@ -55,7 +55,7 @@ export const AppRouter = () => {
                 
                     <PublicRoutes 
                     path="/auth" 
-                    component = { AuthRouter}
+                    component = { AuthRouter }
                     isAuthenticated = { isLoggedIn }
                     />
                     <PrivateRoutes 

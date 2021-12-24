@@ -21,6 +21,7 @@ export const InitialScreenRouter = () => {
 
 
     return (
+        
         <div
             className="journal"
         >
@@ -29,7 +30,7 @@ export const InitialScreenRouter = () => {
 
             <div className="flex">
                 {
-                   
+                   sideBar &&
                     <BarNav
                         sideBar={sideBar}
                         toggleSideBar={toggleSideBar}
