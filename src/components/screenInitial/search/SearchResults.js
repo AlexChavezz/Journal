@@ -19,6 +19,7 @@ export const SearchResults = ({ keyWord }) => {
         setNotesFinded(notesFinded);
     }, [keyWord, todos, notes]);
 
+
     return (
         <section className="results">
             <article className="search-results">

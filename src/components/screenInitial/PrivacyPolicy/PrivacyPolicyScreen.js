@@ -29,7 +29,7 @@ export const PrivacyPolicyScreen = () => {
   }
     return (
         <>
-            <header>
+            <header className="policy-header">
                 <h2>{lenguague === 'english'? english.title : spanish.title }</h2>
                 <div className="caja">
                     <select
