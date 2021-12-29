@@ -13,9 +13,11 @@ export const Header = () => {
     const [optionsModal, setoptionsModal] = useState(false);
     const [isSearching, setIsSearching] = useState(false);
 
-    const handleChangeStatus = () => {
-        setoptionsModal(!optionsModal);
-    }
+    // const handleChangeStatus = ({ target }) => {
+    //     if ( target.classList.contains('background') ){
+    //         setoptionsModal(!optionsModal);
+    //     }
+    // }
     const [{ keyWord }, handleInputChange, ,reset] = useForm({
         keyWord: '', 
     });
@@ -68,7 +70,7 @@ export const Header = () => {
             <div className="user dropdown">
                 <span
                     className="displayName"
-                    onClick={handleChangeStatus}
+                    onClick={() =>  setoptionsModal(true)}
                 >
                     <span> {name}</span>
 
@@ -78,7 +80,7 @@ export const Header = () => {
 
             </div>
             {
-                optionsModal && <ModalOptions handleChangeStatus={handleChangeStatus} />
+                optionsModal && <ModalOptions setoptionsModal={setoptionsModal} />
             }
         </header>
     )

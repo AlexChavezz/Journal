@@ -7,8 +7,9 @@ import { emptyTodos } from '../../actions/todo';
 import { Link } from 'react-router-dom';
 import policyLogo from '../../pictures/policy_white_24dp.svg'; 
 import accountImg from '../../pictures/account_circle_white_24dp.svg';
+import { onCloseModal } from '../../helpers/onCloseModal';
 
-export const ModalOptions = ({ handleChangeStatus }) => {
+export const ModalOptions = ({ setoptionsModal }) => {
     const dispatch = useDispatch();
     const {photoURL,name} = useSelector(state => state.auth);
     const handleSingout = () => {
@@ -19,7 +20,7 @@ export const ModalOptions = ({ handleChangeStatus }) => {
     return (
         <div 
         className="background"
-        onClick={handleChangeStatus}
+        onClick={(e) =>onCloseModal(e.target, "background", setoptionsModal)}
         >
             <div className="dropdown-content"
             >
