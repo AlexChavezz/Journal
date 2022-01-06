@@ -38,10 +38,10 @@ export const BarNav = React.memo(({ sideBar, toggleSideBar, setSideBar }) => {
                 <article>
                     <nav>
                         <ul>
-                            <li>
+                            {/* <li>
                                 <img src={homeImg} alt="home" title="journal" />
                                 <NavLink exact to="/journal" activeClassName="active" >Home</NavLink>
-                            </li>
+                            </li> */}
                             <li>
                                 <img src={todoImg} alt="todo" />
                                 <NavLink to="/journal/toDo" activeClassName="active" >Todo List</NavLink>

@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Redirect, Route, Switch } from 'react-router-dom';
 import { AcoountScreen } from '../components/screenInitial/accountScreen/AcoountScreen';
-import { HomeScreen } from '../components/screenInitial/homeScreen/HomeScreen';
+// import { HomeScreen } from '../components/screenInitial/homeScreen/HomeScreen';
 import { NotesScreen } from '../components/screenInitial/notesScreen/NotesScreen';
 import { RecycleScreenNotes } from '../components/screenInitial/recycleScreen/notesRecycle/RecycleScreenNotes';
 import { RecycleScreen } from '../components/screenInitial/recycleScreen/RecycleScreen';
@@ -43,14 +43,14 @@ export const InitialScreenRouter = () => {
 
 
                 <Switch>
-                    <Route exact path="/journal" component={HomeScreen} />
-                    <Route exact path="/journal/toDo" component={TodoScreen} />
+                    {/* <Route exact path="/journal" component={HomeScreen} /> */}
+                    <Route  exact path="/journal/toDo" component={TodoScreen} />
                     <Route exact path="/journal/notes" component={NotesScreen} />
                     <Route exact path="/journal/paperbin" component={RecycleScreen} />
                     <Route exact path="/journal/paperbin/todos" component={RecycleScreenTodos} />
                     <Route exact path="/journal/paperbin/notes" component={RecycleScreenNotes} />
                     <Route exact path="/journal/myaccount" component={AcoountScreen} />
-                    <Redirect exact to="/journal" />
+                    <Redirect exact to="/journal/toDo" />
                 </Switch>
             </div>
 
