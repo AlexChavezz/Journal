@@ -876,15 +876,26 @@ thead th:nth-child(4) {
 }
 
 .modal-notes .modal-content-notes {
-    width: 80%;
-    height: 450px;
+    align-items: center;
+    animation: fade-in 200ms linear;
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
     display: flex;
     flex-direction: column;
     justify-content: center;
-    align-items: center;
-    background-color: white;
-    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
-    border-radius: 10px;
+    height: 450px;
+    width: 80%;
+}
+
+@keyframes fade-in {
+    from{
+        opacity: 0;
+        transform: translateY(-50px);
+    }to{
+        transform: translateY(0px);
+        opacity: 1;
+    }
 }
 
 .modal-notes .modal-content-notes .text-area {
