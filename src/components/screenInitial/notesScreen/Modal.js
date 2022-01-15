@@ -1,4 +1,5 @@
 import React from 'react';
+import { useRef } from 'react';
 import { useSelector } from 'react-redux';
 import { useDispatch } from 'react-redux';
 import { addNoteAsync, removeActiveNote, updateNoteAsync } from '../../../actions/notes';
@@ -6,7 +7,7 @@ import { Toast } from '../../../alerts/alert';
 import { onCloseModal } from '../../../helpers/onCloseModal';
 import { useForm } from '../../../hooks/useForm';
 
-export const Modal = ({ handleChangeState, setstatus }) => {
+export const Modal = ({ setstatus }) => {
 
     const { notes } = useSelector(state => state.active)
 
@@ -21,7 +22,7 @@ export const Modal = ({ handleChangeState, setstatus }) => {
     const dispatch = useDispatch();
 
     const handleAddNote = () => {
-        handleChangeState();
+        hiddeModal();
         if (notes.note) {
             setValues({
                 ...values,
@@ -34,7 +35,7 @@ export const Modal = ({ handleChangeState, setstatus }) => {
             }
             if (isFormValidate()) {
                 dispatch(updateNoteAsync(notes.id, noteToUpdate));
-                handleChangeState();
+                hiddeModal();
             }
         } else {
             const newNote = {
@@ -45,7 +46,7 @@ export const Modal = ({ handleChangeState, setstatus }) => {
 
             if (isFormValidate()) {
                 dispatch(addNoteAsync(newNote));
-                handleChangeState();
+                hiddeModal();
             }
         }
         dispatch(removeActiveNote());
@@ -63,13 +64,32 @@ export const Modal = ({ handleChangeState, setstatus }) => {
 
         return true;
     }
-
+    // -> animation function 
+    const elementToAnimate = useRef();
+    const animation = () => {
+        elementToAnimate.current.animate([
+            { opacity: 1 },
+            { transform: 'translateY(0px)' },
+            { transform: 'translateY(-50px)' },
+            { opacity: 0}
+        ], {
+            duration: 200
+        })
+    }
+    const hiddeModal = () => {
+        animation();
+        setTimeout(() => {
+            setstatus(false);
+        }, 150);
+    }
     return (
         <div
             className="modal-notes"
-            onClick={ e => onCloseModal(e.target, "modal-notes", setstatus )}
+            onClick={ e => onCloseModal(e.target, "modal-notes", setstatus, { current: animation, time: 150} )}
         >
-            <div className="modal-content-notes">
+            <div className="modal-content-notes"
+            ref={elementToAnimate}
+            >
                 <textarea
                     className="text-area"
                     name="note"
@@ -86,7 +106,7 @@ export const Modal = ({ handleChangeState, setstatus }) => {
                     <button
                         className="btn-cancel"
                         onClick={() => {
-                            handleChangeState()
+                            hiddeModal();
                             dispatch(removeActiveNote());
                         }}
                     >CANCEL</button>

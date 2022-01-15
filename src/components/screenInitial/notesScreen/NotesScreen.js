@@ -34,7 +34,7 @@ export const NotesScreen = React.memo(() => {
 
             {
                 status &&
-                <Modal handleChangeState={handleChangeState} setstatus={setstatus} />
+                <Modal setstatus={setstatus} />
             }
         </div>
     )

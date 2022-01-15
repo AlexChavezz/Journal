@@ -8,6 +8,7 @@ import { Link } from 'react-router-dom';
 import policyLogo from '../../pictures/policy_white_24dp.svg'; 
 import accountImg from '../../pictures/account_circle_white_24dp.svg';
 import { onCloseModal } from '../../helpers/onCloseModal';
+import { useRef } from 'react';
 
 export const ModalOptions = ({ setoptionsModal }) => {
     const dispatch = useDispatch();
@@ -17,12 +18,24 @@ export const ModalOptions = ({ setoptionsModal }) => {
         dispatch(emptyTodos());
         dispatch(emptyNotes());
     }
+    const elementToAnimateRef = useRef();
+    const animation = () => {
+        elementToAnimateRef.current.animate([
+            {transform: 'translateY(0px)'},
+            {opacity: 1},
+            {transform: 'translateY(-10px)'},
+            {opacity: 0}
+        ], {
+            duration: 200
+        })
+    }
     return (
         <div 
         className="background"
-        onClick={(e) =>onCloseModal(e.target, "background", setoptionsModal)}
+        onClick={(e) =>onCloseModal(e.target, "background", setoptionsModal, {current: animation, time: 150})}
         >
             <div className="dropdown-content"
+            ref={elementToAnimateRef}
             >
                 <div
                     className="user-option"

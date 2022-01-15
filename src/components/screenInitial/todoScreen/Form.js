@@ -12,10 +12,8 @@ const initialState = {
     done: null,
 }
 
-export const Form = ( { setShowForm } ) => {
+export const Form = ( { hiddeModal } ) => {
     
- 
-
     const [ formValues, handleInputChange, setValues ] = useForm(initialState);
     const { title, description} = formValues;
 
@@ -58,7 +56,7 @@ export const Form = ( { setShowForm } ) => {
                 title: 'Title and description required',
             });
         }
-        setShowForm(false);
+        hiddeModal();
         dispatch(removeActiveTodo());
     }
 
@@ -106,7 +104,7 @@ export const Form = ( { setShowForm } ) => {
                 className="cancel-form"
                 value="CANCEL"
                 onClick={() => {
-                    setShowForm(false)
+                    hiddeModal();
                     dispatch(removeActiveTodo());
                 }}
             />
