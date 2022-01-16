@@ -69,9 +69,9 @@ export const InitialScreenRouter = () => {
                     sideBar && */}
                 <BarNav
                     ref={sideBarRef}
-                    sideBar={sideBar}
+                    // sideBar={sideBar}
                     toggleSideBar={toggleSideBar}
-                    setSideBar={setSideBar}
+                    // setSideBar={setSideBar}
                     hiddeBarNav={hiddeBarNav}
                 />
                 {/* } */}
