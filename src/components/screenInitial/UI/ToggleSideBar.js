@@ -1,16 +1,25 @@
 import React, { useState } from 'react';
 import menuLight from '../../../pictures/menu_white_24dp.svg';
 import menuDark from '../../../pictures/menu_black_24dp.svg';
-export const ToggleSideBar = ({ sideBar, toggleSideBar }) => {
+export const ToggleSideBar = ({ sideBar, hiddeBarNav, showBarNav }) => {
 
     const [state, setstate] = useState(false);
+
+    const toggleSideBarNav = () => {
+        if(sideBar) {
+            hiddeBarNav();
+        }else{
+            showBarNav();
+        }
+    }
+
 
     return (
         <div
             className={sideBar ? "toggle-sidebar" : "toggle-sidebar false"}
-            onClick={toggleSideBar}
-            onMouseOver={()=> setstate(true)}
-            onMouseOut={()=>setstate(false)}
+            onClick={toggleSideBarNav}
+            onMouseOver={() => setstate(true)}
+            onMouseOut={() => setstate(false)}
         >
             {
                 state ?

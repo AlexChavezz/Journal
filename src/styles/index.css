@@ -416,10 +416,20 @@
 }
 
 .journal aside {
-    width: 200px;
-    height: calc(100vh - 50px);
+    /* animation: test 200ms linear; */
     background-color: #202020;
     position: fixed;
+    height: calc(100vh - 50px);
+    width: 200px;
+    display:none;
+}
+
+@keyframes test {
+    from {
+        transform: translateX(-100%);
+    }to{
+        transform: translateX(0%);
+    }
 }
 
 .journal aside section .logo-barnav {

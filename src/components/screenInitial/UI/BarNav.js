@@ -1,26 +1,11 @@
-import React, {  useLayoutEffect, useRef } from 'react';
+import React from 'react';
 import { NavLink } from 'react-router-dom';
 import logo from '../../../pictures/logo.png';
 import todoImg from '../../../pictures/checklist_white_24dp.svg';
 import notesImg from '../../../pictures/description_white_24dp.svg';
 import recicleImg from '../../../pictures/recycling_white_24dp.svg';
-import { gsap } from 'gsap';
 
-export const BarNav = React.memo(({ sideBar, toggleSideBar, setSideBar }) => {
-
-    const ref = useRef(null);
-
-    useLayoutEffect(() => {
-
-        if ( !ref.current ) return;
-
-        if (sideBar) {
-            gsap.from(ref.current, { x: -200, duration: .2, ease: 'ease' })
-            gsap.to(ref.current, { x: 0, duration: .2, ease: 'ease' })
-        } else {
-            toggleSideBar();
-        }
-    }, [sideBar, toggleSideBar])
+export const BarNav = React.forwardRef(({ sideBar, toggleSideBar, setSideBar, hiddeBarNav }, ref) => {
 
     return (
         <aside
@@ -42,7 +27,9 @@ export const BarNav = React.memo(({ sideBar, toggleSideBar, setSideBar }) => {
                                 <img src={todoImg} alt="todo" />
                                 <NavLink to="/journal/toDo" activeClassName="active" >Todo List</NavLink>
                             </li>
-                            <li>
+                            <li
+                            // onClick={hiddeBarNav}
+                            >
                                 <img src={notesImg} alt="notes" />
                                 <NavLink to="/journal/notes" activeClassName="active" >Notes</NavLink>
                             </li>
@@ -56,4 +43,4 @@ export const BarNav = React.memo(({ sideBar, toggleSideBar, setSideBar }) => {
             </section>
         </aside>
     );
-})
+});
